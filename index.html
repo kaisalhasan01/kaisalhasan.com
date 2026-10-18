@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kais Alhasan</title>
+<meta name="description" content="Kais Alhasan, mechanical engineering student at Linköping University. Design automation and optimisation. Looking for a master's thesis from January 2027.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='8' fill='%23c8102e'/%3E%3Ccircle cx='23' cy='16' r='8' fill='%23ffc915'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://kaisalhasan.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kaisalhasan.com/">
+<meta property="og:title" content="Kais Alhasan, mechanical engineering student">
+<meta property="og:description" content="Design automation and optimisation. Looking for a master's thesis from January 2027.">
+<meta property="og:image" content="https://kaisalhasan.com/img/cable_two_still.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f9f6f0; --bg2:#ffffff; --bg3:#efebe3; --ink:#1a1a1a; --ink2:#55585e; --line:#dcd7cc;
+  --red:#c8102e; --red-ink:#a80d26; --on-red:#ffffff; --yellow:#ffc915; --on-yellow:#1a1a1a; --green:#15803d;
+  /* graphite bands for the menu and the contact footer */
+  --band:#1d1e21; --band-ink:#f3efe7; --band-ink2:#b5b1a9; --band-line:#3a3b3f; --band-btn:#2a2b2f;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131416; --bg2:#1a1b1e; --bg3:#222428; --ink:#ecebe7; --ink2:#a3a7ad; --line:#2e3035;
+    --red:#e0263f; --red-ink:#ff7180; --yellow:#ffd23f; --green:#4ade80;
+    --band:#25272c; --band-line:#3a3d44; --band-btn:#30333a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131416; --bg2:#1a1b1e; --bg3:#222428; --ink:#ecebe7; --ink2:#a3a7ad; --line:#2e3035;
+  --red:#e0263f; --red-ink:#ff7180; --yellow:#ffd23f; --green:#4ade80;
+  --band:#25272c; --band-line:#3a3d44; --band-btn:#30333a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:Barlow,sans-serif;line-height:1.12;overflow-wrap:break-word;hyphens:auto}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.wrap.wide{max-width:1440px}
+@media(min-width:720px){.wrap{padding:0 40px}}
+.muted{color:var(--ink2)}
+
+/* menu band */
+nav{background:var(--band);color:var(--band-ink);border-bottom:3px solid var(--red);position:sticky;top:0;z-index:30;transition:transform .25s ease}
+nav.hide{transform:translateY(-100%)}
+@media (prefers-reduced-motion: reduce){nav{transition:none}}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.15rem Barlow;letter-spacing:.02em}
+.brand i{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:7px 0 0 var(--yellow);margin-right:8px}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav-links a{text-decoration:none;font:600 1.08rem Barlow;padding:8px 14px;border-radius:8px;color:var(--band-ink)}
+.nav-links a:hover{background:var(--band-btn)}
+.nav-links a.on{background:var(--band-ink);color:var(--band)}
+.tools{display:flex;gap:6px}
+.chip{border:1px solid var(--line);background:var(--bg2);color:var(--ink);border-radius:6px;padding:6px 10px;font:600 .82rem Barlow;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--red);color:var(--red-ink)}
+nav .chip{background:var(--band-btn);border-color:var(--band-line);color:var(--band-ink)}
+nav .chip[aria-pressed="true"]{border-color:var(--yellow);color:var(--yellow)}
+@media(max-width:720px){.nav-links{order:3;width:100%;padding-bottom:10px}.nav-links a{padding:6px 10px;font-size:1rem}}
+
+/* back link */
+.back{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding-top:26px;font-weight:600}
+.back a{text-decoration:none}
+.back a:hover{color:var(--red-ink);text-decoration:underline}
+.back .sep{color:var(--line)}
+
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:8px;font:600 .98rem Barlow;text-decoration:none;border:1px solid var(--line);background:var(--bg2);color:var(--ink);max-width:100%;overflow-wrap:anywhere;cursor:pointer}
+.btn:hover{border-color:var(--ink2)}
+.btn.primary{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.status{display:inline-block;font:600 .74rem Barlow;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.status.active{background:var(--red);color:var(--on-red)}
+.status.wip{background:var(--yellow);color:var(--on-yellow)}
+.status.ship{border:1px solid var(--ink2)}
+.status.concept{border:1px dashed var(--ink2);color:var(--ink2)}
+
+/* layout */
+section{padding:56px 0}
+section + section{border-top:1px solid var(--line)}
+h1.page{font-size:clamp(2rem,5vw,2.8rem);font-weight:600;margin:16px 0 10px}
+.lead{max-width:40em;color:var(--ink2);font-size:1.08rem}
+h2{font-size:1.6rem;font-weight:600;margin-bottom:22px}
+h3{font-size:1.2rem;font-weight:600}
+
+/* home hero */
+.hero{display:grid;gap:22px;padding-top:40px;padding-bottom:28px;grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:900px){.hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px}}
+.who{display:flex;gap:22px;align-items:center}
+.who img{width:clamp(110px,16vw,150px);aspect-ratio:1;object-fit:cover;border-radius:12px;background:#fff;border:1px solid var(--line);flex:none}
+.who h1{font-size:clamp(2.2rem,5vw,3.3rem);font-weight:700;letter-spacing:-.01em}
+.who .title{font:600 clamp(1.05rem,2vw,1.25rem) Barlow;color:var(--ink2);margin-top:6px;max-width:22em}
+.bio{margin-top:22px;max-width:36em}
+.bio p{margin-bottom:10px}
+.side{display:grid;gap:16px}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:22px}
+.avail{display:flex;align-items:center;gap:10px;font:600 1.05rem Barlow;margin-bottom:14px}
+.avail i{width:10px;height:10px;border-radius:50%;background:var(--green);flex:none}
+.side .btns .btn{flex:1 1 40%}
+.box h3{font-size:1rem;color:var(--ink2);margin-bottom:12px}
+.stack{display:grid;gap:8px}
+.stack div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;font-size:.97rem}
+.stack dt{font-weight:600}
+.stack dd{color:var(--ink2)}
+.glance{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--line);margin-top:4px}
+@media(min-width:900px){.glance{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px}}
+.glance div{padding:12px 0;border-bottom:1px solid var(--line);font-size:.97rem}
+.glance dt{color:var(--ink2);font-weight:600;font-size:.88rem}
+
+/* tiles */
+.tiles{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:860px){.tiles{grid-template-columns:repeat(6,minmax(0,1fr))}.t-a{grid-column:span 4;grid-row:span 2}.t-b{grid-column:span 2;grid-row:span 2}.t-c,.t-d,.t-e{grid-column:span 2}}
+a.card{display:flex;flex-direction:column;text-decoration:none;background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+a.card:hover{border-color:var(--ink2)}
+a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-bottom:1px solid var(--line)}
+.t-a img{aspect-ratio:16/10;object-position:50% 40%}
+.t-b img{aspect-ratio:1/1}
+.card .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .kicker{font:600 .85rem Barlow;color:var(--ink2)}
+.card p{color:var(--ink2);font-size:.97rem}
+.mini{list-style:none;display:grid;gap:8px}
+.mini li{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:.95rem}
+.playhint{font-size:.8rem;color:var(--ink2)}
+
+/* projects list */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:24px 0}
+.plist{border-top:1px solid var(--line)}
+a.prow{display:grid;grid-template-columns:minmax(0,1fr);gap:10px 28px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+@media(min-width:760px){a.prow{grid-template-columns:240px minmax(0,1fr) auto}}
+a.prow img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+a.prow .noimg{aspect-ratio:16/10;border-radius:8px;border:1px dashed var(--line)}
+a.prow:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
+a.prow p{color:var(--ink2);font-size:.97rem;margin-top:6px}
+a.prow .meta{font-size:.88rem;color:var(--ink2);margin-top:8px}
+
+/* project page */
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:.95rem}
+@media(min-width:760px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.facts dt{color:var(--ink2);font-weight:600;font-size:.88rem}
+figure{margin:0}
+figure img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+figure.lead-media{display:table;max-width:100%;margin:0 auto}
+figure.lead-media figcaption{display:table-caption;caption-side:bottom}
+figure.lead-media img{width:auto;max-width:100%;max-height:min(62vh,540px)}
+figcaption{font-size:.9rem;color:var(--ink2);margin-top:8px}
+table.res{width:100%;border-collapse:collapse;font-size:.97rem}
+table.res th,table.res td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+table.res th{font:600 .88rem Barlow;color:var(--ink2)}
+table.res .n{text-align:right;font-family:"JetBrains Mono",monospace;white-space:nowrap}
+.story > div{display:grid;gap:6px 40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start}
+.story > div:first-child{padding-top:0}
+.story > div:last-child{border:0}
+@media(min-width:860px){.story > div{grid-template-columns:180px minmax(0,1fr)}}
+.story h3{font-size:1.05rem;color:var(--ink2)}
+.story p,.story li{max-width:42em}
+.story ul{margin-left:20px;display:grid;gap:6px}
+.figs{display:grid;gap:28px;grid-template-columns:minmax(0,1fr);align-items:start}
+@media(min-width:860px){.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.figs .wide{grid-column:1/-1}}
+.pager{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:28px 0 8px;border-top:1px solid var(--line)}
+.pager a{text-decoration:none;font:600 1rem Barlow}
+.pager a:hover{color:var(--red-ink)}
+.pager small{display:block;color:var(--ink2);font:400 .85rem "Source Sans 3"}
+
+/* other pages */
+.job{display:grid;gap:6px 40px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start}
+.job:first-child{padding-top:0}
+.job:last-child{border:0}
+@media(min-width:860px){.job{grid-template-columns:180px minmax(0,1fr)}}
+.job .when{color:var(--ink2)}
+.job h3{font-size:1.25rem}
+.job .org{font-weight:600;color:var(--red-ink)}
+.job ul{margin:10px 0 0 20px;display:grid;gap:6px}
+.job figure{margin-top:18px;max-width:400px}
+.other div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.other div:last-child{border:0}
+.wide img{max-height:520px;object-fit:cover;object-position:50% 60%}
+.two{display:grid;gap:32px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:860px){.two{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.two p{margin-bottom:14px;max-width:38em}
+.roles > div{padding:14px 0;border-bottom:1px solid var(--line)}
+.roles > div:last-child{border:0}
+.roles .when{color:var(--ink2);font-size:.92rem}
+.photos{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.photos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.photos img{aspect-ratio:4/3;object-fit:cover}
+.courses{columns:1;column-gap:32px;font-size:.97rem}
+@media(min-width:720px){.courses{columns:2}}
+.courses li{break-inside:avoid;margin:0 0 6px 18px}
+.edu > div{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
+.edu > div:last-child{border:0}
+.edu img{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#fff;flex:none;border:0}
+.edu .ph{width:48px;height:48px;border-radius:50%;flex:none;background:var(--bg3)}
+
+/* contact band */
+footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3px solid var(--red);padding:48px 0 40px}
+.foot{display:grid;gap:32px;grid-template-columns:minmax(0,1fr);align-items:end}
+@media(min-width:900px){.foot{grid-template-columns:minmax(0,1fr) 440px}}
+.contact h2{margin-bottom:6px}
+.contact p{color:var(--band-ink2);margin-bottom:18px}
+.contact .rows{display:grid;gap:10px;max-width:460px}
+.contact .btn{background:var(--band-btn);border-color:var(--band-line);color:var(--band-ink)}
+.contact .btn:hover{border-color:var(--band-ink2)}
+.contact .btn.primary{background:var(--red);border-color:var(--red);color:#fff;width:100%;font-size:1.05rem;padding:12px 16px}
+.contact .btns .btn{flex:1 1 0}
+.tb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--band-ink);font:500 .78rem "JetBrains Mono",monospace}
+.tb > div{padding:5px 8px;border-right:1px solid var(--band-ink);border-bottom:1px solid var(--band-ink);min-width:0;overflow-wrap:anywhere}
+.tb > div:nth-child(4n){border-right:0}
+.tb > div.last{border-bottom:0}
+.tb span{display:block;color:var(--band-ink2);font-size:.62rem;text-transform:uppercase;letter-spacing:.04em}
+.tb .title{grid-column:span 3;font:600 .95rem Barlow}
+.tb .title b{display:block;font-size:1.05rem}
+.tb .proj{display:grid;place-items:center}
+.tb .ok{color:#4ade80;font-weight:600}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:10px;font-weight:600;display:flex;gap:14px;align-items:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:50;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast a{color:var(--yellow)}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<nav id="topnav">
+  <div class="wrap wide">
+    <a href="#/" class="brand" aria-label="Kais Alhasan, home"><i></i>Kais Alhasan</a>
+    <div class="nav-links" id="navlinks"></div>
+    <div class="tools">
+      <button class="chip" id="lang-en" aria-pressed="true">EN</button>
+      <button class="chip" id="lang-sv" aria-pressed="false">SV</button>
+      <button class="chip" id="theme" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<main id="app"></main>
+
+<footer><div class="wrap wide foot">
+  <div class="contact">
+    <h2 data-ui="contact_h"></h2>
+    <p data-ui="contact_p"></p>
+    <div class="rows">
+      <a class="btn primary js-email" href="mailto:kais.alhasan01@gmail.com">kais.alhasan01@gmail.com</a>
+      <div class="btns">
+        <a class="btn" href="cv-kais-alhasan.pdf" target="_blank" rel="noopener" data-ui="cv_btn"></a>
+        <a class="btn" href="https://www.linkedin.com/in/kais-alhasan/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/kaisalhasan01" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <div class="tb" aria-label="Title block">
+    <div class="title"><span data-ui="tb_title"></span><b>Kais Alhasan</b><em data-ui="tb_sub" style="font-style:normal"></em></div>
+    <div class="proj" title="First-angle projection (ISO E)">
+      <svg width="58" height="28" viewBox="0 0 58 28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M2 6 L22 10 L22 18 L2 22 Z"/><line x1="0" y1="14" x2="24" y2="14" stroke-dasharray="3 2" stroke-width=".8"/>
+        <circle cx="44" cy="14" r="4"/><circle cx="44" cy="14" r="8"/><line x1="30" y1="14" x2="57" y2="14" stroke-dasharray="3 2" stroke-width=".8"/>
+      </svg>
+    </div>
+    <div><span data-ui="tb_drawn"></span>K. Alhasan</div>
+    <div><span data-ui="tb_date"></span>2026-10-17</div>
+    <div><span data-ui="tb_scale"></span>1:1</div>
+    <div><span data-ui="tb_size"></span>A4</div>
+    <div class="last"><span data-ui="tb_dwg"></span>KA-2026-001</div>
+    <div class="last"><span data-ui="tb_rev"></span>E</div>
+    <div class="last"><span data-ui="tb_sheet"></span>1/1</div>
+    <div class="last"><span data-ui="tb_status"></span><b class="ok" data-ui="tb_status_v"></b></div>
+  </div>
+</div></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== Content. In the real site every entry becomes its own Markdown/MDX file. ===== */
+const EMAIL = "kais.alhasan01@gmail.com";
+const UI = {
+  nav:{en:["Projects","Experience","Leadership","About"],sv:["Projekt","Erfarenhet","Ledarskap","Om mig"]},
+  backhome:{en:"← Back to home",sv:"← Tillbaka till startsidan"}, allproj:{en:"All projects",sv:"Alla projekt"},
+  title:{en:"Mechanical engineering student in design automation and optimisation",sv:"Maskinteknikstudent inom designautomation och optimering"},
+  p1:{en:"Final year at Linköping University, specialising in design and product development, with a business degree alongside.",sv:"Sista året vid Linköpings universitet, inriktning konstruktion och produktutveckling, med en ekonomexamen vid sidan av."},
+  p2:{en:"I like taking repetitive work out of engineering, and I usually ask what a solution costs before I ask how elegant it is.",sv:"Jag gillar att ta bort repetitivt arbete ur ingenjörsjobbet, och jag frågar oftast vad en lösning kostar innan jag frågar hur snygg den är."},
+  avail:{en:"Looking for a master's thesis from January 2027",sv:"Söker exjobb från januari 2027"},
+  email:{en:"Email me",sv:"Mejla mig"}, cv_btn:{en:"Download CV",sv:"Ladda ner CV"},
+  copied:{en:"Email address copied",sv:"Mejladressen är kopierad"}, openmail:{en:"Open mail app",sv:"Öppna mejlappen"},
+  tools_h:{en:"What I work with",sv:"Det jag arbetar med"},
+  g_study:{en:"Studies",sv:"Studier"}, g_study_v:{en:"M.Sc. Mechanical Engineering and B.Sc. Business Administration, both finishing June 2027",sv:"Civilingenjör maskinteknik och ekonomie kandidat, båda klara juni 2027"},
+  g_ind:{en:"Industry",sv:"Industri"}, g_ind_v:{en:"3 summers at Scania (2022–2024), 1 summer at Väderstad (2025)",sv:"3 somrar på Scania (2022–2024), 1 sommar på Väderstad (2025)"},
+  g_lang:{en:"Languages",sv:"Språk"}, g_lang_v:{en:"Swedish (fluent), English (fluent), Arabic (native)",sv:"Svenska (flytande), engelska (flytande), arabiska (modersmål)"},
+  work_h:{en:"Experience and work",sv:"Erfarenhet och projekt"},
+  k_proj:{en:"Selected project",sv:"Utvalt projekt"}, k_exp:{en:"Experience",sv:"Erfarenhet"}, k_more:{en:"Other projects",sv:"Andra projekt"}, k_lead:{en:"Outside engineering",sv:"Utanför ingenjörsarbetet"}, k_edu:{en:"Education",sv:"Utbildning"},
+  hover:{en:"Hover to play",sv:"Håll muspekaren över för att spela"},
+  exp_tile:{en:"Scania and Väderstad",sv:"Scania och Väderstad"},
+  exp_tile_p:{en:"Three summers at Scania in engine assembly and procurement processes, then design work in Creo on Väderstad's seed drills.",sv:"Tre somrar på Scania inom motormontering och inköpsprocesser, sedan konstruktion i Creo på Väderstads såmaskiner."},
+  lead_tile:{en:"Wrestling coach",sv:"Brottningstränare"},
+  lead_tile_p:{en:"I coach children's wrestling in Ryd. My school programme there has reached 141 children so far.",sv:"Jag tränar barn i brottning i Ryd. Mitt skolprogram där har nått 141 barn hittills."},
+  edu_tile_p:{en:"Design and Product Development, plus a business degree at LiU and Stockholm University.",sv:"Konstruktion och produktutveckling, plus ekonomexamen vid LiU och Stockholms universitet."},
+  proj_h:{en:"Projects",sv:"Projekt"}, proj_p:{en:"Each project is labelled with where it actually stands.",sv:"Varje projekt är märkt med var det faktiskt står."},
+  f_all:{en:"All",sv:"Alla"},
+  st:{active:{en:"Active",sv:"Aktivt"},wip:{en:"In progress",sv:"Pågår"},ship:{en:"Done",sv:"Klart"},concept:{en:"Idea",sv:"Idé"}},
+  m_year:{en:"When",sv:"När"}, m_ctx:{en:"Context",sv:"Sammanhang"}, m_role:{en:"Role",sv:"Roll"}, m_tools:{en:"Tools",sv:"Verktyg"},
+  s_problem:{en:"The problem",sv:"Problemet"}, s_approach:{en:"What I did",sv:"Vad jag gjorde"}, s_result:{en:"Results",sv:"Resultat"}, s_role:{en:"My part",sv:"Min del"}, s_next:{en:"Next",sv:"Nästa steg"}, s_links:{en:"Links",sv:"Länkar"},
+  prev:{en:"Previous project",sv:"Föregående projekt"}, next:{en:"Next project",sv:"Nästa projekt"},
+  exp_h:{en:"Experience",sv:"Erfarenhet"}, other:{en:"Other jobs",sv:"Andra jobb"},
+  lead_h:{en:"Leadership",sv:"Ledarskap"},
+  about_h:{en:"About",sv:"Om mig"}, edu_h:{en:"Education",sv:"Utbildning"}, courses_h:{en:"Relevant courses I've completed",sv:"Relevanta kurser jag har läst klart"}, skills_h:{en:"Tools I use",sv:"Verktyg jag använder"},
+  contact_h:{en:"Contact",sv:"Kontakt"}, contact_p:{en:"Email is the quickest way to reach me.",sv:"Snabbast når du mig på mejl."},
+  tb_title:{en:"Title",sv:"Benämning"}, tb_sub:{en:"Portfolio, mechanical engineering",sv:"Portfolio, maskinteknik"},
+  tb_drawn:{en:"Drawn by",sv:"Ritad av"}, tb_date:{en:"Date",sv:"Datum"}, tb_scale:{en:"Scale",sv:"Skala"}, tb_size:{en:"Size",sv:"Format"},
+  tb_dwg:{en:"Drawing no.",sv:"Ritningsnr"}, tb_rev:{en:"Rev",sv:"Rev"}, tb_sheet:{en:"Sheet",sv:"Blad"}, tb_status:{en:"Status",sv:"Status"}, tb_status_v:{en:"Available 2027",sv:"Tillgänglig 2027"},
+};
+
+/* still = thumbnail, anim = recording that plays on hover (and always on the project page) */
+const PROJECTS = [
+ {slug:"cable-routing", status:"ship", still:"img/cable_two_still.png", anim:"img/cable_two.webp",
+  heroCap:{en:"Recorded from the built demo: two cables routed in one world by the trained agent. The faint grey line is the shortest legal grid route.",sv:"Inspelat från det byggda demot: två kablar dragna i samma värld av den tränade agenten. Den svaga grå linjen är den kortaste tillåtna rutnätsvägen."},
+  title:{en:"Cable routing with reinforcement learning",sv:"Kabeldragning med förstärkningsinlärning"},
+  short:{en:"Software agents that route cables through 3D CAD geometry without breaking the bend radius or crossing another cable.",sv:"Mjukvaruagenter som drar kablar genom 3D-CAD-geometri utan att bryta böjradien eller korsa en annan kabel."},
+  tilep:{en:"The final agent finds a route on 85 of 90 long test routes through an engine bay it has never seen.",sv:"Den slutliga agenten hittar en väg på 85 av 90 långa testrutter genom ett motorrum den aldrig sett."},
+  period:"2025–2026", ctx:{en:"Started in TMKU01 Design Automation at LiU, then rebuilt on my own",sv:"Startade i TMKU01 Designautomation på LiU, sedan ombyggt på egen hand"},
+  role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Unity ML-Agents (PPO)","C#","Python","ONNX"],
+  problem:{en:"Routing a wire harness through an engine bay is still mostly manual CAD work. The cable has to clear every component, keep its minimum bend radius and stay away from other cables, and every design change means doing it again.",
+           sv:"Att dra kablage genom ett motorrum är fortfarande mest manuellt CAD-arbete. Kabeln ska gå fri från alla komponenter, hålla sin minsta böjradie och hållas borta från andra kablar, och varje konstruktionsändring betyder att det görs om."},
+  approach:{en:["Trained agents in Unity ML-Agents on increasingly crowded 3D layouts, with the difficulty raised automatically as they improved.","Gave the agent a hint: the shortest route a simple grid search can find. It is not rewarded for following it, so it can leave it when there is a better way.","Turned a CAD model of an engine bay into a voxel grid and ran the trained model in plain Python, so it works without Unity.","Compared every version on the same 90 test routes and checked the differences with a paired statistical test (McNemar)."],
+            sv:["Tränade agenter i Unity ML-Agents på allt trängre 3D-layouter, där svårigheten höjdes automatiskt när de blev bättre.","Gav agenten en ledtråd: den kortaste vägen en enkel rutnätssökning hittar. Den belönas inte för att följa den, så den kan lämna den när det finns en bättre väg.","Gjorde om en CAD-modell av ett motorrum till ett voxelrutnät och körde den tränade modellen i vanlig Python, utan Unity.","Jämförde alla versioner på samma 90 testrutter och kontrollerade skillnaderna med ett parat statistiskt test (McNemar)."]},
+  cols:{a:{en:"Previous agent",sv:"Förra agenten"},b:{en:"Final agent",sv:"Slutlig agent"}},
+  results:[
+    {k:{en:"Long routes solved (out of 90)",sv:"Lösta långa rutter (av 90)"}, a:"50", b:"85"},
+    {k:{en:"Same test, 90 new routes (out of 90)",sv:"Samma test, 90 nya rutter (av 90)"}, a:"53", b:"84"},
+    {k:{en:"Steering jitter, median (lower is smoother)",sv:"Styrryck, median (lägre är jämnare)"}, a:"0.33", b:"0.16"},
+  ],
+  resultNote:{en:"Paired McNemar test, p < 0.0001 on both route sets. For comparison, a classical planner with smoothing solves 90 of 90 for a single cable, about 3 % shorter. Where learning could win is several cables at once, which is the natural next step.",sv:"Parat McNemar-test, p < 0,0001 på båda ruttuppsättningarna. Som jämförelse löser en klassisk planerare med utjämning 90 av 90 för en enskild kabel, cirka 3 % kortare. Där inlärning kan vinna är flera kablar samtidigt, vilket är det naturliga nästa steget."},
+  myrole:{en:"I designed the experiments, ran the training and wrote the evaluation, with AI pair-programming for much of the code. The course gave me the problem; the rebuild after it is my own.",sv:"Jag utformade experimenten, körde träningen och skrev utvärderingen, med AI som programmeringshjälp för mycket av koden. Kursen gav mig problemet; ombyggnaden efteråt är min egen."},
+  figs:[{src:"img/cable_continuous.webp",cap:{en:"The continuous agent steers instead of stepping between cells, so the bend radius is part of the motion.",sv:"Den kontinuerliga agenten styr i stället för att gå mellan celler, så böjradien är en del av rörelsen."}},
+        {src:"img/engine_bay_continuous_v4.png",cap:{en:"In the voxelized engine bay, with the demo's own counters: 24.5 cells of cable against a 32-cell grid route.",sv:"I det voxeliserade motorrummet, med demots egna räknare: 24,5 celler kabel mot en rutnätsväg på 32 celler."}},
+        {src:"img/results_engine_bay.png",wide:true,cap:{en:"Solved long routes for every version I trained. Green is the final agent.",sv:"Lösta långa rutter för varje version jag tränat. Grönt är den slutliga agenten."}}],
+  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/cable-routing-rl"}]},
+ {slug:"factory-planner", status:"ship", still:"img/factory.png", anim:"img/factory_demo.webp",
+  heroCap:{en:"The whole workflow, recorded from the program: the hall is cut to shape, the equipment goes in, the conveyor is drawn and checked, and the drawing takes 3D form.",sv:"Hela arbetsflödet, inspelat från programmet: hallen formas, utrustningen placeras, bandet ritas och kontrolleras, och ritningen tar 3D-form."},
+  title:{en:"Factory layout planner: from blueprint to 3D",sv:"Fabrikslayoutplanerare: från ritning till 3D"},
+  short:{en:"Plan a production line in four checked steps: shape the floor, place the equipment, lay the conveyor, and watch the drawing take 3D form.",sv:"Planera en produktionslina i fyra kontrollerade steg: forma golvet, placera utrustningen, dra transportbandet och se ritningen ta 3D-form."},
+  period:"2026", ctx:{en:"Own project, based on a TMKT57 Product Modelling assignment at LiU",sv:"Eget projekt, utifrån en uppgift i TMKT57 Produktmodellering på LiU"},
+  role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["C#",".NET","Unity","xUnit"],
+  problem:{en:"The expensive mistakes in a production line are made while planning it: a robot arm with no room to swing, a drill head over a bend in the conveyor, a conveyor that cannot reach a station. On paper they are easy to miss; on the shop floor they cost a rebuild.",
+           sv:"De dyra misstagen i en produktionslina görs när den planeras: en robotarm utan plats att svänga, ett borrhuvud över en kurva i bandet, ett band som inte når en station. På papper är de lätta att missa; på verkstadsgolvet kostar de en ombyggnad."},
+  approach:{en:["A layout engine in C# knows how much space each piece of equipment needs. A robot arm stands on one tile but needs the 3×3 around it, a drill works on the tile in front of it, and a machine is loaded from one side. Every edit is checked against these rules, with a suggested fix for each problem.","The conveyor is laid in 90° modules from IN through every station to OUT. A shortest-path search with backtracking routes it, or you draw it yourself and it is checked as you draw.","A Unity editor takes you through four steps (floor, equipment, conveyor, 3D) with a guided tour, then turns the blueprint into a running 3D line."],
+            sv:["En layoutmotor i C# vet hur mycket plats varje utrustning behöver. En robotarm står på en ruta men behöver 3×3 runt sig, en borr arbetar på rutan framför sig och en maskin laddas från en sida. Varje ändring kontrolleras mot de reglerna, med ett förslag på åtgärd för varje problem.","Bandet läggs i 90°-moduler från IN genom varje station till UT. En kortaste-väg-sökning med backtracking drar det, eller så ritar man det själv och det kontrolleras medan man ritar.","En Unity-editor tar en genom fyra steg (golv, utrustning, band, 3D) med en guidad tur, och gör sedan om ritningen till en 3D-lina som går."]},
+  cols:{a:{en:"Fixed order",sv:"Fast ordning"}, b:{en:"Tool picks order",sv:"Verktyget väljer"}},
+  results:[
+    {k:{en:"Random layouts routed, 6 × 4 m, 3 stations (of 300)",sv:"Slumpade layouter dragna, 6 × 4 m, 3 stationer (av 300)"}, a:"223", b:"297"},
+    {k:{en:"Random layouts routed, 7 × 5 m, 4 stations (of 300)",sv:"Slumpade layouter dragna, 7 × 5 m, 4 stationer (av 300)"}, a:"216", b:"298"},
+    {k:{en:"Random layouts routed, 10 × 7.5 m, 7 stations (of 300)",sv:"Slumpade layouter dragna, 10 × 7,5 m, 7 stationer (av 300)"}, a:"94", b:"292"},
+  ],
+  resultNote:{en:"Every route the tool reported as finished passed a separate rule check that shares no code with the router: 0 rejected. Median routing time is 0.6–44 ms. The process order in these layouts is random, which is harder than a real line, and a layout that is not routed is not proven impossible. Not measured yet: whether planning with the tool is faster and less error-prone than by hand. The test protocol is written.",
+              sv:"Varje rutt som verktyget rapporterade som färdig klarade en separat regelkontroll som inte delar någon kod med routern: 0 underkända. Mediantiden är 0,6–44 ms. Processordningen i layouterna är slumpad, vilket är svårare än en riktig lina, och en layout som inte dras är inte bevisat omöjlig. Ännu inte mätt: om planering med verktyget går snabbare och ger färre fel än för hand. Testprotokollet är skrivet."},
+  myrole:{en:"Everything in this version: the layout engine, the routing and rule checks, the Unity editor and its 3D models, the 36 unit tests and the benchmark, with AI pair-programming for much of the code. The idea comes from a course assignment; the code and models are new.",sv:"Allt i den här versionen: layoutmotorn, banddragningen och regelkontrollerna, Unity-editorn och dess 3D-modeller, de 36 enhetstesterna och benchmarken, med AI som programmeringshjälp för mycket av koden. Idén kommer från en kursuppgift; koden och modellerna är nya."},
+  next:{en:"A user test: the same line planned with the tool and with pen and paper, comparing time and mistakes. After that, operator walkways as their own zone, and a STEP/glTF export so the 3D layout opens in any CAD tool.",sv:"Ett användartest: samma lina planerad med verktyget och med papper och penna, där tid och fel jämförs. Därefter gångvägar för operatörer som egen zon, och en STEP/glTF-export så att 3D-layouten öppnas i valfritt CAD-verktyg."},
+  figs:[{src:"img/factory_drawn.png",cap:{en:"Drawing the conveyor by hand. The tool flags the turn under the drill and lists what is still missing.",sv:"Bandet ritas för hand. Verktyget flaggar svängen under borren och listar vad som återstår."}},
+        {src:"img/factory_blueprint.png",cap:{en:"The finished blueprint: yellow hatching is the space each machine needs.",sv:"Den färdiga ritningen: gul skraffering är utrymmet varje maskin behöver."}},
+        {src:"img/factory_morph.webp",cap:{en:"The blueprint taking 3D form.",sv:"Ritningen tar 3D-form."}},
+        {src:"img/factory.png",cap:{en:"The same line in 3D, with the robot arms working and products on the belt.",sv:"Samma lina i 3D, med robotarmarna i arbete och produkter på bandet."}}],
+  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/factory-layout-generator"},{t:{en:"Download for Windows",sv:"Ladda ner för Windows"},href:"https://github.com/kaisalhasan01/factory-layout-generator/releases/tag/v1.0"}]},
+ {slug:"car-deal-finder", status:"active", still:"img/cardeal.png", imgTop:true, noHero:true,
+  title:{en:"Used-car advisor",sv:"Rådgivare för begagnade bilar"},
+  short:{en:"Values every used car on Blocket against similar listings and ranks them by how well they fit the buyer, not just by price. The project I'm using to learn SQL properly.",sv:"Värderar varje begagnad bil på Blocket mot liknande annonser och rankar dem efter hur väl de passar köparen, inte bara efter pris. Projektet jag använder för att lära mig SQL på riktigt."},
+  period:"2026–", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Sole developer",sv:"Ensam utvecklare"},
+  tools:["Python","SQL (SQLite)","Power BI","Streamlit"],
+  problem:{en:"The cheapest car is rarely the best buy. Mileage, equipment, known faults and running costs decide what a car is worth to a particular buyer.",sv:"Den billigaste bilen är sällan det bästa köpet. Miltal, utrustning, kända fel och driftkostnad avgör vad bilen är värd för en viss köpare."},
+  approach:{en:["A regression model estimates each car's market value from similar listings (same model, age, mileage for its age), with an uncertainty band.","Listings and daily price snapshots go into a SQLite star schema, queried with SQL and built for Power BI.","You choose what matters most (a good deal, reliability, fuel economy, staying under budget) and the ranking follows your weights."],sv:["En regressionsmodell uppskattar varje bils marknadsvärde från liknande annonser (samma modell, ålder, miltal för åldern), med ett osäkerhetsintervall.","Annonser och dagliga prisögonblicksbilder sparas i ett stjärnschema i SQLite, som jag frågar med SQL och som är byggt för Power BI.","Man väljer vad som är viktigast (bra affär, pålitlighet, bränslesnålhet, att hålla budgeten) och rankingen följer ens viktning."]},
+  resultText:{en:"Working on demo data. Next: real listings over a few weeks, the SQL analysis behind them, and a Power BI dashboard.",sv:"Fungerar på demodata. Nästa steg: riktiga annonser under några veckor, SQL-analysen bakom dem och en Power BI-dashboard."},
+  myrole:{en:"Everything.",sv:"Allt."},
+  figs:[{src:"img/cardeal.png",wide:true,cap:{en:"The app on demo data: what matters to you on the left, the ranked cars and their yearly cost on the right.",sv:"Appen på demodata: det som är viktigast för dig till vänster, rankade bilar och deras årskostnad till höger."}}], links:[]},
+ {slug:"reverse", status:"wip", still:"img/reverse_landing.png", imgTop:true, noHero:true,
+  title:{en:"Reverse, a job platform where companies apply",sv:"Reverse, en jobbplattform där företagen söker"},
+  short:{en:"Candidates build a free profile and companies pay to contact them, with salary, hours and location stated up front.",sv:"Kandidater gör en gratis profil och företag betalar för att kontakta dem, med lön, timmar och ort angivet direkt."},
+  period:"2026", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Product and development",sv:"Produkt och utveckling"}, tools:["Next.js","TypeScript","PostgreSQL"],
+  problem:{en:"Applying for jobs takes candidates hours, while the company usually already knows what it's looking for.",sv:"Att söka jobb tar kandidaterna timmar, medan företaget oftast redan vet vad det letar efter."},
+  approach:{en:["Search over profiles and work history, without any gender or age fields.","Structured offers instead of free-text messages, and full data export and deletion for users."],sv:["Sökning i profiler och arbetshistorik, helt utan köns- eller åldersfält.","Strukturerade erbjudanden i stället för fritextmeddelanden, och full dataexport och radering för användarna."]},
+  resultText:{en:"A working prototype with candidate and company flows, shown here with demo data.",sv:"En fungerande prototyp med flöden för kandidater och företag, här med demodata."},
+  myrole:{en:"Product, design and code.",sv:"Produkt, design och kod."},
+  figs:[{src:"img/reverse_landing.png",wide:true,cap:{en:"The start page.",sv:"Startsidan."}},{src:"img/reverse_search.png",cap:{en:"Company view: candidates who are looking for work right now.",sv:"Företagsvy: kandidater som söker jobb just nu."}},{src:"img/reverse_offer.png",cap:{en:"Candidate view: a structured offer with salary, hours and location.",sv:"Kandidatvy: ett strukturerat erbjudande med lön, timmar och ort."}}], links:[]},
+ {slug:"test-slot-monitor", status:"ship", still:"img/testslot_still.png", anim:"img/testslot_demo.webp", imgTop:true,
+  heroCap:{en:"Recorded in June 2025: the first run, the automatic re-run ten minutes later, the email it sent when an earlier slot appeared, and the confirmation with the new test booked and the old one cancelled. Personal details are blurred or cut.",sv:"Inspelat i juni 2025: första körningen, den automatiska omkörningen tio minuter senare, mejlet den skickade när en tidigare tid dök upp, och bekräftelsen med det nya provet bokat och det gamla avbokat. Personuppgifter är suddade eller bortklippta."},
+  title:{en:"Driving-test slot monitor",sv:"Bevakare för uppkörningstider"},
+  short:{en:"A script that watched Trafikverket's booking site for cancelled motorcycle tests and emailed me when an earlier slot opened. It got me a test weeks earlier.",sv:"Ett skript som bevakade Trafikverkets bokningssida efter avbokade MC-prov och mejlade mig när en tidigare tid dök upp. Jag fick provtid veckor tidigare."},
+  period:"2025", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Python","Selenium"],
+  problem:{en:"Trafikverket doesn't notify you about cancellations. The only way to find one is to keep refreshing the page.",sv:"Trafikverket meddelar inte avbokningar. Enda sättet att hitta en är att ladda om sidan gång på gång."},
+  approach:{en:["After one manual BankID login, Selenium reuses the session and walks through the booking pages.","It checks every ten minutes, at roughly the pace a person would, and sends an email when an earlier date shows up."],sv:["Efter en manuell BankID-inloggning återanvänder Selenium sessionen och går igenom bokningssidorna.","Den kollar var tionde minut, ungefär i den takt en människa skulle, och skickar ett mejl när ett tidigare datum dyker upp."]},
+  resultText:{en:"I booked and passed my motorcycle test weeks before my original date.",sv:"Jag bokade och klarade MC-provet veckor före mitt ursprungliga datum."},
+  myrole:{en:"Everything.",sv:"Allt."}, figs:[],
+  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/Swedish-Transport-Administration-Driving-Test-Slot-Monitor"}]},
+ {slug:"syria-atlas", status:"concept", still:"img/syria_atlas.png",
+  heroCap:{en:"Concept sketch. The three themes are where I would start looking; there is no data behind the image yet.",sv:"Konceptskiss. De tre temana är där jag skulle börja leta; det finns ingen data bakom bilden än."},
+  title:{en:"Syria investment atlas",sv:"Investeringsatlas för Syrien"},
+  short:{en:"An idea for a data atlas of where reconstruction and investment in Syria would have the most effect, built in Power BI.",sv:"En idé om en dataatlas över var återuppbyggnad och investeringar i Syrien skulle göra mest nytta, byggd i Power BI."},
+  period:"–", ctx:{en:"Idea",sv:"Idé"}, role:{en:"–",sv:"–"}, tools:["Power BI","SQL"],
+  problem:{en:"Only an idea so far.",sv:"Än så länge bara en idé."}, approach:{en:[],sv:[]}, myrole:{en:"–",sv:"–"}, figs:[], links:[]},
+];
+
+const JOBS = [
+ {when:{en:"Jun–Sep 2025",sv:"jun–sep 2025"}, title:{en:"Väderstad AB, Junior Engineer",sv:"Väderstad AB, Junior Engineer"}, sub:{en:"VJET programme, seed-drill department",sv:"VJET-programmet, såmaskinsavdelningen"},
+  pts:{en:["Redesigned dozens of components in Creo Parametric for function and manufacturability.","Designed mounts that let extra GPS systems be fitted to the seed drills.","Helped standardise components across several product lines to cut the number of part variants."],sv:["Konstruerade om tiotals komponenter i Creo Parametric för funktion och tillverkbarhet.","Konstruerade fästen så att extra GPS-system kan monteras på såmaskinerna.","Var med och standardiserade komponenter över flera produktlinjer för att minska antalet artikelvarianter."]}},
+ {when:{en:"Jun–Aug 2024",sv:"jun–aug 2024"}, title:{en:"Scania, Summer intern",sv:"Scania, Sommarpraktikant"}, sub:{en:"SNDP Processes & Methods (procurement)",sv:"SNDP Processes & Methods (inköp)"},
+  pts:{en:["Revised several process documents covering how the procurement department works with suppliers. The department implemented the updated versions.","Took part in consolidating Scania's Automotive Process Manuals through a gap analysis, aligning procurement processes across the global organisation with its future goals."],sv:["Reviderade flera processdokument om hur inköpsavdelningen arbetar med leverantörer. Avdelningen införde de uppdaterade versionerna.","Var med och konsoliderade Scanias Automotive Process Manuals genom en gap-analys, för att likrikta inköpsprocesserna i den globala organisationen med företagets framtida mål."]},
+  photo:{src:"img/scania-ceo.jpg",cap:{en:"With Scania's CEO Christian Levin at the end of my internship, summer 2024.",sv:"Med Scanias vd Christian Levin i slutet av praktiken, sommaren 2024."}}},
+ {when:{en:"Summers 2022 and 2023",sv:"somrarna 2022 och 2023"}, title:{en:"Scania, Production intern",sv:"Scania, Produktionspraktikant"}, sub:{en:"SIP programme, engine assembly",sv:"SIP-programmet, motormontering"},
+  pts:{en:["Built the tool register for the 6-cylinder and V8 engine departments and added cost and lifespan data for the V8 tools.","Updated quality-control documents and linked each process step to its tools.","Compared the current state with Scania P&L's 2025 vision and presented the gaps to the management team."],sv:["Byggde verktygsregistret för 6-cylinder- och V8-avdelningarna och lade till kostnad och livslängd för V8-verktygen.","Uppdaterade kvalitetsdokument och kopplade varje processteg till sina verktyg.","Jämförde nuläget med Scania P&L:s vision för 2025 och presenterade gapen för ledningsgruppen."]}},
+];
+const OTHER = [
+ {t:{en:"Alarm operator, Verisure",sv:"Larmoperatör, Verisure"}, w:"2025"},
+ {t:{en:"Laboratory technician, SGS",sv:"Laboratorietekniker, SGS"}, w:"2024–2025"},
+ {t:{en:"Assistant (freelance), Mälarstrandens Bostäder",sv:"Assistent (frilans), Mälarstrandens Bostäder"}, w:"2021–2024"},
+ {t:{en:"Caregiver, Linköping and Arboga municipalities",sv:"Vårdbiträde, Linköpings och Arboga kommun"}, w:"2019–2024"},
+];
+const COURSES = {
+ en:["Design Automation of Customized Products (TMKU01)","Collaborative Design Optimization (TMKT79)","Design Optimization (TMKT48)","Additive Manufacturing (TMKO05)","Product Modelling, CATIA (TMKT57)","Advanced CAD (TMKT74)","CAD and Technical Drawing, cont. (TMMI68)","Conceptual Design (TMKT69)","Advanced Project Course, 12 credits (TMPM05)","AI and Machine Learning (TDDE56)","Mechatronics (TMMS21)","Control Engineering (TSRT19)","System Safety (TMKT77)","Ground Vehicle Mechanics (TMME11)","Machine Elements (TMKT39)","Bachelor's thesis, 18 credits (TMMT31)"],
+ sv:["Designautomatisering för kundunika produkter (TMKU01)","Kollaborativ designoptimering (TMKT79)","Konstruktionsoptimering (TMKT48)","Additiv tillverkning (TMKO05)","Produktmodellering, CATIA (TMKT57)","Avancerad CAD (TMKT74)","CAD och ritteknik, fortsättning (TMMI68)","Konceptuell konstruktion (TMKT69)","Projektkurs avancerad, 12 hp (TMPM05)","AI och maskininlärning (TDDE56)","Mekatronik (TMMS21)","Reglerteknik (TSRT19)","Systemsäkerhet (TMKT77)","Markfordonsmekanik (TMME11)","Maskinelement (TMKT39)","Kandidatarbete, 18 hp (TMMT31)"]};
+
+/* ===== helpers ===== */
+let lang="en"; try{ if(localStorage.getItem("lang")==="sv") lang="sv"; }catch(e){}
+const L=v=>v==null?"":(typeof v==="object"&&!Array.isArray(v)&&("en" in v))?v[lang]:v;
+const U=k=>L(UI[k]);
+const badge=s=>`<span class="status ${s}">${L(UI.st[s])}</span>`;
+const sv=()=>lang==="sv";
+const back=(...extra)=>`<div class="wrap back"><a href="#/">${U("backhome")}</a>${extra.map(([t,h])=>`<span class="sep">/</span><a href="${h}">${t}</a>`).join("")}</div>`;
+/* thumbnail that plays its recording while hovered */
+const thumb=(p,alt="",cls="")=>p.still?`<img class="${cls}" src="${p.still}" ${p.anim?`data-still="${p.still}" data-anim="${p.anim}"`:""} alt="${alt}" ${p.imgTop?'style="object-position:top left"':''}>`:`<div class="noimg"></div>`;
+
+/* ===== views ===== */
+function home(){
+  const p=PROJECTS[0], others=PROJECTS.slice(1,5);
+  return `
+  <div class="wrap hero">
+    <div>
+      <div class="who"><img src="img/profile.jpg" alt="Kais Alhasan"><div><h1>Kais Alhasan</h1><div class="title">${U("title")}</div></div></div>
+      <div class="bio"><p>${U("p1")}</p><p>${U("p2")}</p></div>
+    </div>
+    <div class="side">
+      <div class="box">
+        <div class="avail"><i></i>${U("avail")}</div>
+        <div class="btns">
+          <a class="btn primary js-email" href="mailto:${EMAIL}">${U("email")}</a>
+          <a class="btn" href="cv-kais-alhasan.pdf" target="_blank" rel="noopener">${U("cv_btn")}</a>
+          <a class="btn" href="https://www.linkedin.com/in/kais-alhasan/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/kaisalhasan01" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="box"><h3>${U("tools_h")}</h3><dl class="stack">
+        <div><dt>CAD</dt><dd>CATIA V5, Creo, SolidWorks</dd></div>
+        <div><dt>${sv()?"Kod":"Code"}</dt><dd>Python, C#, VB.NET, MATLAB</dd></div>
+        <div><dt>ML</dt><dd>Unity ML-Agents, ONNX</dd></div>
+        <div><dt>Data</dt><dd>SQL, Power BI, Excel</dd></div>
+      </dl></div>
+    </div>
+  </div>
+  <div class="wrap"><dl class="glance">
+    <div><dt>${U("g_study")}</dt><dd>${U("g_study_v")}</dd></div>
+    <div><dt>${U("g_ind")}</dt><dd>${U("g_ind_v")}</dd></div>
+    <div><dt>${U("g_lang")}</dt><dd>${U("g_lang_v")}</dd></div>
+  </dl></div>
+  <section><div class="wrap">
+    <h2>${U("work_h")}</h2>
+    <div class="tiles">
+      <a class="card t-a" href="#/experience"><img src="img/scania-ceo.jpg" alt="Kais with Scania's CEO Christian Levin">
+        <div class="body"><div class="kicker">${U("k_exp")}</div><h3>${U("exp_tile")}</h3><p>${U("exp_tile_p")}</p></div></a>
+      <a class="card t-b" href="#/projects/${p.slug}">${thumb(p,"Two cables routed by the trained agent")}
+        <div class="body"><div class="kicker">${U("k_proj")} · ${badge(p.status)}</div><h3>${L(p.title)}</h3><p>${L(p.tilep)}</p><span class="playhint">${U("hover")}</span></div></a>
+      <a class="card t-c" href="#/projects"><div class="body"><div class="kicker">${U("k_more")}</div>
+        <ul class="mini">${others.map(o=>`<li><span>${L(o.title)}</span>${badge(o.status)}</li>`).join("")}</ul></div></a>
+      <a class="card t-d" href="#/leadership"><img src="img/eldsjal-gala.jpg" alt="" style="object-position:40% 65%">
+        <div class="body"><div class="kicker">${U("k_lead")}</div><h3>${U("lead_tile")}</h3><p>${U("lead_tile_p")}</p></div></a>
+      <a class="card t-e" href="#/about"><div class="body"><div class="kicker">${U("k_edu")}</div>
+        <h3>${sv()?"Civilingenjör maskinteknik, LiU":"M.Sc. Mechanical Engineering, LiU"}</h3><p>${U("edu_tile_p")}</p></div></a>
+    </div>
+  </div></section>`;
+}
+
+function projectsPage(){
+  return `${back()}
+  <section style="padding-top:8px"><div class="wrap">
+    <h1 class="page">${U("proj_h")}</h1><p class="lead">${U("proj_p")}</p>
+    <div class="filters" role="group" aria-label="Filter">
+      <button class="chip" data-f="all" aria-pressed="true">${U("f_all")}</button>
+      ${["active","ship","wip","concept"].map(s=>`<button class="chip" data-f="${s}" aria-pressed="false">${L(UI.st[s])}</button>`).join("")}
+    </div>
+    <div class="plist">${PROJECTS.map(p=>`
+      <a class="prow" data-s="${p.status}" href="#/projects/${p.slug}">
+        ${thumb(p)}
+        <div><h3>${L(p.title)}</h3><p>${L(p.short)}</p><div class="meta">${p.period} · ${p.tools.join(", ")}</div></div>
+        <div>${badge(p.status)}</div>
+      </a>`).join("")}</div>
+  </div></section>`;
+}
+
+function projectPage(slug){
+  const i=PROJECTS.findIndex(x=>x.slug===slug); if(i<0) return projectsPage();
+  const p=PROJECTS[i], prev=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length], next=PROJECTS[(i+1)%PROJECTS.length];
+  const list=a=>a.length?`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+  const hero=p.anim||(!p.noHero&&p.still);
+  return `${back([U("allproj"),"#/projects"])}
+  <section style="padding-top:8px"><div class="wrap">
+    ${badge(p.status)}
+    <h1 class="page">${L(p.title)}</h1>
+    <p class="lead">${L(p.short)}</p>
+    <dl class="facts">
+      <div><dt>${U("m_year")}</dt><dd>${p.period}</dd></div>
+      <div><dt>${U("m_ctx")}</dt><dd>${L(p.ctx)}</dd></div>
+      <div><dt>${U("m_role")}</dt><dd>${L(p.role)}</dd></div>
+      <div><dt>${U("m_tools")}</dt><dd>${p.tools.join(", ")}</dd></div>
+    </dl>
+  </div></section>
+  ${hero?`<div class="wrap"><figure class="lead-media"><img src="${hero}" alt="">${p.heroCap?`<figcaption>${L(p.heroCap)}</figcaption>`:""}</figure></div>`:""}
+  <section><div class="wrap story">
+    <div><h3>${U("s_problem")}</h3><p>${L(p.problem)}</p></div>
+    ${L(p.approach).length?`<div><h3>${U("s_approach")}</h3>${list(L(p.approach))}</div>`:""}
+    ${p.results?`<div><h3>${U("s_result")}</h3><div>
+      <table class="res"><thead><tr><th></th><th class="n">${L(p.cols.a)}</th><th class="n">${L(p.cols.b)}</th></tr></thead>
+      <tbody>${p.results.map(r=>`<tr><td>${L(r.k)}</td><td class="n">${r.a}</td><td class="n" style="font-weight:600">${r.b}</td></tr>`).join("")}</tbody></table>
+      <p class="muted" style="margin-top:12px;font-size:.95rem">${L(p.resultNote)}</p></div></div>`:""}
+    ${p.resultText?`<div><h3>${U("s_result")}</h3><p>${L(p.resultText)}</p></div>`:""}
+    <div><h3>${U("s_role")}</h3><p>${L(p.myrole)}</p></div>
+    ${p.next?`<div><h3>${U("s_next")}</h3><p>${L(p.next)}</p></div>`:""}
+    ${p.links.length?`<div><h3>${U("s_links")}</h3><div class="btns">${p.links.map(l=>`<a class="btn" href="${l.href}" target="_blank" rel="noopener">${L(l.t)}</a>`).join("")}</div></div>`:""}
+  </div></section>
+  ${p.figs.length?`<section><div class="wrap figs">${p.figs.map(f=>`<figure class="${f.wide?"wide":""}"><img src="${f.src}" alt="" loading="lazy"><figcaption>${L(f.cap)}</figcaption></figure>`).join("")}</div></section>`:""}
+  <div class="wrap"><div class="pager">
+    <a href="#/projects/${prev.slug}"><small>${U("prev")}</small>${L(prev.title)}</a>
+    <a href="#/projects/${next.slug}" style="text-align:right"><small>${U("next")}</small>${L(next.title)}</a>
+  </div></div>`;
+}
+
+function experiencePage(){
+  return `${back()}
+  <section style="padding-top:8px"><div class="wrap">
+    <h1 class="page" style="margin-bottom:28px">${U("exp_h")}</h1>
+    ${JOBS.map(j=>`<div class="job"><div class="when">${L(j.when)}</div>
+      <div><h3>${L(j.title)}</h3><div class="org">${L(j.sub)}</div><ul>${L(j.pts).map(x=>`<li>${x}</li>`).join("")}</ul>
+      ${j.photo?`<figure><img src="${j.photo.src}" alt=""><figcaption>${L(j.photo.cap)}</figcaption></figure>`:""}</div></div>`).join("")}
+  </div></section>
+  <section><div class="wrap"><h2>${U("other")}</h2>
+    <div class="other">${OTHER.map(o=>`<div><span>${L(o.t)}</span><span class="muted">${o.w}</span></div>`).join("")}</div>
+  </div></section>`;
+}
+
+function leadershipPage(){
+  return `${back()}
+  <section style="padding-top:8px"><div class="wrap">
+    <h1 class="page">${U("lead_h")}</h1>
+    <p class="lead" style="margin-bottom:28px">${sv()?"Jag har brottats fristil sedan jag var tolv, först i Syrien och sedan i Sverige. Sedan hösten 2024 tränar jag barn i IFK Linköpings Brottarklubb.":"I've wrestled freestyle since I was twelve, first in Syria and then in Sweden. Since autumn 2024 I've coached children at IFK Linköpings Brottarklubb."}</p>
+    <figure class="wide"><img src="img/eldsjal-gala.jpg" alt="Eldsjäl 2.0 participants and mentors at Eldsjälsgalan 2026"><figcaption>${sv()?"Examen från Eldsjäl 2.0 på Eldsjälsgalan, 13 maj 2026.":"Graduating from Eldsjäl 2.0 at Eldsjälsgalan, 13 May 2026."}</figcaption></figure>
+  </div></section>
+  <section><div class="wrap two">
+    <div>
+      <p>${sv()?"Ryd är ett område där få barn idrottar i förening. Inom Idrottsklivet besökte jag Björnkärrsskolan och lät klasserna prova brottning. <b>141 barn</b> har varit med hittills, och i dag tränar jag barn på skolan varje vecka, i grupper om 10–14 i åldern sex till tolv år.":"Ryd is an area where few children do organised sport. Through Idrottsklivet I visited Björnkärrsskolan and let the classes try wrestling. <b>141 children</b> have taken part so far, and I now coach children at the school every week, in groups of 10–14 aged six to twelve."}</p>
+      <p>${sv()?"Det var mitt utvecklingsprojekt i Eldsjäl 2.0, RF-SISU:s och Folkspels ledarprogram (cirka 120 timmar, augusti 2025 till maj 2026).":"It was my development project in Eldsjäl 2.0, the leadership programme run by RF-SISU and Folkspel (about 120 hours, August 2025 to May 2026)."}</p>
+    </div>
+    <div class="roles">
+      <div><div class="when">${sv()?"Hösten 2024 –":"Autumn 2024 –"}</div><h3>${sv()?"Brottningstränare, IFK Linköpings Brottarklubb":"Wrestling coach, IFK Linköpings Brottarklubb"}</h3></div>
+      <div><div class="when">2025–2026</div><h3>Eldsjäl 2.0, RF-SISU & Folkspel</h3></div>
+      <div><div class="when">2024–2025</div><h3>${sv()?"Svenska Brottningsförbundet: Fördjupad träning & ledarskap, Coach Camp Unga ledare":"Swedish Wrestling Federation: Advanced Training & Leadership, Coach Camp Young Leaders"}</h3></div>
+    </div>
+  </div></section>
+  <section><div class="wrap">
+    <h2>${sv()?"Där det började":"Where it started"}</h2>
+    <div class="photos">
+      <figure><img src="img/syria_team_medals.jpg" alt="Youth wrestling team with medals in Syria"><figcaption>${sv()?"Mitt första lag, efter en tävling i Syrien.":"My first team, after a competition in Syria."}</figcaption></figure>
+      <figure><img src="img/eldsjal-stage.jpg" alt=""><figcaption>${sv()?"Och många år senare: på scenen efter Eldsjälsgalan.":"And years later: on stage after Eldsjälsgalan."}</figcaption></figure>
+    </div>
+  </div></section>`;
+}
+
+function aboutPage(){
+  return `${back()}
+  <section style="padding-top:8px"><div class="wrap two">
+    <div>
+      <h1 class="page" style="margin-bottom:20px">${U("about_h")}</h1>
+      <p>${sv()?"Jag kom till Sverige från Syrien 2015, när jag var fjorton. Jag gick naturvetenskapsprogrammet på Vasagymnasiet i Arboga och började på maskinteknik i Linköping 2021.":"I came to Sweden from Syria in 2015, when I was fourteen. I did the natural science programme at Vasagymnasiet in Arboga and started mechanical engineering in Linköping in 2021."}</p>
+      <p>${sv()?"Det som fastnat mest under utbildningen är designautomation och att optimera processer i allmänhet: att göra saker så effektiva som möjligt. Ekonomistudierna gör att jag nästan alltid frågar vad en lösning kostar innan jag frågar hur snygg den är.":"What has stuck with me most is design automation, and optimising processes in general: making things as efficient as they can be. The business studies mean I usually ask what a solution costs before I ask how elegant it is."}</p>
+      <p>${sv()?"Jag kan tänka mig att flytta för rätt exjobb eller jobb, inom Sverige eller utomlands.":"I'm happy to relocate for the right thesis or job, in Sweden or abroad."}</p>
+    </div>
+    <div>
+      <figure><img src="img/syria_brother.jpg" alt="Kais and his younger brother as children in Syria" style="aspect-ratio:4/3;object-fit:cover"><figcaption>${sv()?"Jag och min lillebror på balkongen hemma i Syrien.":"My little brother and me on our balcony in Syria."}</figcaption></figure>
+    </div>
+  </div></section>
+  <section><div class="wrap two">
+    <div><h2>${U("edu_h")}</h2><div class="edu">
+      <div><img src="img/lith-m.jpg" alt="Maskinteknik LiTH emblem"><div><h3>${sv()?"Civilingenjör maskinteknik, Linköpings universitet":"M.Sc. Mechanical Engineering, Linköping University"}</h3><p class="muted">2021–2027 · ${sv()?"Inriktning konstruktion och produktutveckling. Exjobb våren 2027, examen juni 2027.":"Design and Product Development. Thesis in spring 2027, graduating June 2027."}</p></div></div>
+      <div><div class="ph"></div><div><h3>${sv()?"Ekonomie kandidat, Linköpings universitet och Stockholms universitet":"B.Sc. Business Administration, Linköping University and Stockholm University"}</h3><p class="muted">2025–2027 · ${sv()?"Läses parallellt, examen juni 2027.":"Studied in parallel, graduating June 2027."}</p></div></div>
+    </div></div>
+    <div><h2>${U("skills_h")}</h2>
+      <dl class="stack">
+        <div><dt>CAD</dt><dd>CATIA V5, Creo Parametric, SolidWorks, Ansys Discovery</dd></div>
+        <div><dt>${sv()?"Kod":"Code"}</dt><dd>Python, C#, VB.NET, C++, MATLAB</dd></div>
+        <div><dt>ML</dt><dd>Unity ML-Agents, ONNX</dd></div>
+        <div><dt>Data</dt><dd>SQL, Power BI, Excel</dd></div>
+        <div><dt>${sv()?"Språk":"Languages"}</dt><dd>${U("g_lang_v")}</dd></div>
+      </dl>
+    </div>
+  </div></section>
+  <section><div class="wrap"><h2>${U("courses_h")}</h2><ul class="courses">${L(COURSES).map(c=>`<li>${c}</li>`).join("")}</ul></div></section>`;
+}
+
+/* ===== email: copy to clipboard and confirm, so a click never feels dead ===== */
+const toast=document.getElementById("toast"); let toastTimer;
+function showToast(){
+  toast.textContent=`${U("copied")}: ${EMAIL}`;
+  toast.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(()=>toast.classList.remove("show"),5000);
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest(".js-email"); if(!a) return;
+  e.preventDefault();
+  const done=()=>showToast();
+  if(navigator.clipboard&&window.isSecureContext) navigator.clipboard.writeText(EMAIL).then(done,done);
+  else { const t=document.createElement("textarea"); t.value=EMAIL; document.body.appendChild(t); t.select(); try{document.execCommand("copy")}catch(_){} t.remove(); done(); }
+});
+
+/* ===== hover-to-play thumbnails ===== */
+const canHover=matchMedia("(hover: hover)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+function wireThumbs(){
+  if(!canHover) return;
+  document.querySelectorAll("img[data-anim]").forEach(img=>{
+    const host=img.closest("a")||img;
+    new Image().src=img.dataset.anim; // preload so playback starts at once
+    host.addEventListener("mouseenter",()=>{img.src=img.dataset.anim});
+    host.addEventListener("mouseleave",()=>{img.src=img.dataset.still});
+  });
+}
+
+/* ===== router ===== */
+const ROUTES=["#/projects","#/experience","#/leadership","#/about"];
+function render(){
+  const h=location.hash||"#/";
+  let html;
+  if(h.startsWith("#/projects/")) html=projectPage(h.split("/")[2]);
+  else if(h==="#/projects") html=projectsPage();
+  else if(h==="#/experience") html=experiencePage();
+  else if(h==="#/leadership") html=leadershipPage();
+  else if(h==="#/about") html=aboutPage();
+  else html=home();
+  document.getElementById("app").innerHTML=html;
+  document.querySelectorAll("[data-ui]").forEach(e=>e.textContent=U(e.dataset.ui));
+  const names=L(UI.nav);
+  document.getElementById("navlinks").innerHTML=ROUTES.map((r,i)=>`<a href="${r}" class="${h.startsWith(r)?"on":""}">${names[i]}</a>`).join("");
+  document.documentElement.lang=lang;
+  document.getElementById("lang-en").setAttribute("aria-pressed",lang==="en");
+  document.getElementById("lang-sv").setAttribute("aria-pressed",lang==="sv");
+  document.title = h==="#/"||h==="" ? "Kais Alhasan" : (document.querySelector("h1")?.textContent||"")+" · Kais Alhasan";
+  document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    document.querySelectorAll(".prow").forEach(c=>c.style.display=(b.dataset.f==="all"||c.dataset.s===b.dataset.f)?"":"none");
+  });
+  document.querySelectorAll(".playhint").forEach(e=>e.hidden=!canHover);
+  wireThumbs();
+}
+window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0);nav.classList.remove("hide")});
+const nav=document.getElementById("topnav"); let lastY=scrollY;
+addEventListener("scroll",()=>{const y=scrollY; if(y>lastY+6&&y>120) nav.classList.add("hide"); else if(y<lastY-6||y<120) nav.classList.remove("hide"); lastY=y;},{passive:true});
+function setLang(l){lang=l;try{localStorage.setItem("lang",l)}catch(e){};render()}
+document.getElementById("lang-en").onclick=()=>setLang("en");
+document.getElementById("lang-sv").onclick=()=>setLang("sv");
+document.getElementById("theme").onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=d?"light":"dark"};
+render();
+</script>
+</body>
+</html>
