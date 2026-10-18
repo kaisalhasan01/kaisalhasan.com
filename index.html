@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kais Alhasan</title>
 <meta name="description" content="Kais Alhasan, mechanical engineering student at Linköping University. Design automation and optimisation. Looking for a master's thesis from January 2027.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='8' fill='%23c8102e'/%3E%3Ccircle cx='23' cy='16' r='8' fill='%23ffc915'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1e21'/%3E%3Cg fill='none' stroke='%23f3efe7' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M3 12.5 L13 9 L13 23 L3 19.5 Z'/%3E%3Ccircle cx='22.5' cy='16' r='7'/%3E%3Ccircle cx='22.5' cy='16' r='3.4'/%3E%3C/g%3E%3Cpath d='M1 16 H31' stroke='%23c8102e' stroke-width='1.3'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://kaisalhasan.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kaisalhasan.com/">
@@ -49,7 +49,10 @@ nav.hide{transform:translateY(-100%)}
 @media (prefers-reduced-motion: reduce){nav{transition:none}}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:14px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.15rem Barlow;letter-spacing:.02em}
-.brand i{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:7px 0 0 var(--yellow);margin-right:8px}
+/* logo: the ISO first-angle projection symbol from the drawing title block */
+.brand svg{width:40px;height:20px;flex:none;overflow:visible}
+.brand svg .o{fill:none;stroke:var(--band-ink);stroke-width:1.6;stroke-linejoin:round}
+.brand svg .c{stroke:var(--red);stroke-width:1.1;stroke-dasharray:6 2 1.5 2}
 .nav-links{display:flex;gap:6px;flex-wrap:wrap}
 .nav-links a{text-decoration:none;font:600 1.08rem Barlow;padding:8px 14px;border-radius:8px;color:var(--band-ink)}
 .nav-links a:hover{background:var(--band-btn)}
@@ -226,7 +229,7 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
 <body>
 <nav id="topnav">
   <div class="wrap wide">
-    <a href="#/" class="brand" aria-label="Kais Alhasan, home"><i></i>Kais Alhasan</a>
+    <a href="#/" class="brand" aria-label="Kais Alhasan, home"><svg viewBox="0 0 40 20" aria-hidden="true"><path class="o" d="M2 6.5 L17 1.5 L17 18.5 L2 13.5 Z"/><circle class="o" cx="31" cy="10" r="8.5"/><circle class="o" cx="31" cy="10" r="4.2"/><path class="c" d="M-1 10 H41"/></svg>Kais Alhasan</a>
     <div class="nav-links" id="navlinks"></div>
     <div class="tools">
       <button class="chip" id="lang-en" aria-pressed="true">EN</button>
