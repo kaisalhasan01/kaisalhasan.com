@@ -36,6 +36,12 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
+h1,h2,h3{text-wrap:balance}
+p,li,figcaption{text-wrap:pretty}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--bg2);color:var(--ink);padding:8px 12px;z-index:40}
+.skip:focus{left:8px}
+html{scroll-padding-top:90px}
 img{max-width:100%;display:block}
 h1,h2,h3{font-family:Barlow,sans-serif;line-height:1.15;overflow-wrap:break-word}
 .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
@@ -77,7 +83,8 @@ nav .chip[aria-pressed="true"]{border-color:var(--yellow);color:var(--yellow)}
 .btn:hover{border-color:var(--ink2);background:var(--bg3)}
 .btn.primary{background:var(--red);border-color:var(--red);color:var(--on-red)}
 .btn.primary:hover{background:var(--red-ink);border-color:var(--red-ink)}
-.status{display:inline-block;font:600 .74rem Barlow;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.status{display:inline-block;font:600 .8rem Barlow;letter-spacing:.01em;padding:2px 8px;border-radius:3px;white-space:nowrap}
 .status.active{background:var(--red);color:var(--on-red)}
 .status.wip{background:var(--yellow);color:var(--on-yellow)}
 .status.ship{border:1px solid var(--ink2)}
@@ -100,36 +107,45 @@ h3{font-size:1.2rem;font-weight:600}
 .who .title{font:600 clamp(1.05rem,2vw,1.25rem) Barlow;color:var(--ink2);margin-top:6px;max-width:22em}
 .bio{margin-top:22px;max-width:36em}
 .bio p{margin-bottom:10px}
-.side{display:grid;gap:16px}
-.box{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:22px}
-.avail{display:flex;align-items:center;gap:10px;font:600 1.05rem Barlow;margin-bottom:14px}
-.avail i{width:10px;height:10px;border-radius:50%;background:var(--green);flex:none}
-.side .btns .btn{flex:1 1 40%}
-.box h3{font-size:1rem;color:var(--ink2);margin-bottom:12px}
+/* spec sheet beside the hero, drawn like the title block in the footer */
+.cta{margin-top:24px;max-width:36em}
+.cta .avail{font:600 1.05rem Barlow;margin-bottom:12px}
+.cta .btns .btn{flex:1 1 auto}
+@media(max-width:720px){.cta .btns{display:grid;grid-template-columns:1fr 1fr}.spec dl div{grid-template-columns:6.2em minmax(0,1fr)}}
+.spec{border:1.5px solid var(--ink);align-self:start}
+.spec h2{font:500 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);padding:8px 14px;margin:0;border-bottom:1px solid var(--ink)}
+.spec dl div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:12px;padding:9px 14px;border-bottom:1px solid var(--line);font-size:.95rem}
+.spec dl div:last-child{border-bottom:0}
+.spec dt{font:500 .72rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2);padding-top:3px}
 .stack{display:grid;gap:8px}
 .stack div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;font-size:.95rem}
 .stack dt{font-weight:600}
 .stack dd{color:var(--ink2)}
-.glance{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--line);margin-top:4px}
-@media(min-width:900px){.glance{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px}}
-.glance div{padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
-.glance dt{color:var(--ink2);font-weight:600;font-size:.88rem}
 
-/* tiles */
-.tiles{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
-@media(min-width:860px){.tiles{grid-template-columns:repeat(6,minmax(0,1fr))}.t-a{grid-column:span 4;grid-row:span 2}.t-b{grid-column:span 2;grid-row:span 2}.t-c,.t-d,.t-e{grid-column:span 2}}
-a.card{display:flex;flex-direction:column;text-decoration:none;background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-a.card:hover{border-color:var(--ink2)}
-a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
-.card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-bottom:1px solid var(--line)}
-.t-a img{aspect-ratio:16/10;object-position:50% 40%}
-.t-b img{aspect-ratio:1/1}
-.card .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card .kicker{font:600 .85rem Barlow;color:var(--ink2)}
-.card p{color:var(--ink2);font-size:.95rem}
-.mini{list-style:none;display:grid;gap:8px}
-.mini li{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:.95rem}
-.playhint{font-size:.8rem;color:var(--ink2)}
+/* start page: featured project, project list, image and text pairs */
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.head h2{margin:0}
+.head a{font:600 .95rem Barlow;text-decoration:none;color:var(--red-ink)}
+.head a:hover{text-decoration:underline}
+a.feature{display:grid;gap:18px 36px;grid-template-columns:minmax(0,1fr);text-decoration:none;align-items:center}
+@media(min-width:860px){a.feature{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+a.feature img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+a.feature h3{font-size:clamp(1.35rem,2.4vw,1.75rem);margin:10px 0 10px}
+a.feature p{max-width:32em}
+a.feature .more,a.pair .more{display:inline-block;margin-top:14px;font:600 .95rem Barlow;color:var(--red-ink)}
+a.feature:hover h3,a.pair:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
+.playhint{display:block;font-size:.85rem;color:var(--ink2);margin-top:8px}
+ul.morelist{list-style:none;margin-top:36px;border-top:1px solid var(--line)}
+ul.morelist a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+ul.morelist b{font:600 1.05rem Barlow}
+ul.morelist small{grid-column:1;color:var(--ink2);font-size:.92rem}
+ul.morelist .status{grid-row:1/span 2;grid-column:2}
+ul.morelist a:hover b{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
+a.pair{display:grid;gap:18px 36px;grid-template-columns:minmax(0,1fr);text-decoration:none;align-items:center}
+@media(min-width:860px){a.pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}a.pair.flip .pic{order:2}}
+a.pair img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px}
+a.pair h3{font-size:1.35rem;margin-bottom:10px}
+a.pair p{max-width:32em}
 
 /* projects list */
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin:24px 0}
@@ -231,6 +247,7 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
 </style>
 </head>
 <body>
+<a class="skip" href="#app">Skip to content</a>
 <nav id="topnav">
   <div class="wrap wide">
     <a href="#/" class="brand" aria-label="Kais Alhasan, home"><svg viewBox="0 0 40 20" aria-hidden="true"><path class="o" d="M2 6.5 L17 1.5 L17 18.5 L2 13.5 Z"/><circle class="o" cx="31" cy="10" r="8.5"/><circle class="o" cx="31" cy="10" r="4.2"/><path class="c" d="M-1 10 H41"/></svg>Kais Alhasan</a>
@@ -243,7 +260,7 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
   </div>
 </nav>
 
-<main id="app"></main>
+<main id="app" tabindex="-1"></main>
 
 <footer><div class="wrap wide foot">
   <div class="contact">
@@ -262,16 +279,16 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
     <div class="title"><span data-ui="tb_title"></span><b>Kais Alhasan</b><em data-ui="tb_sub" style="font-style:normal"></em></div>
     <div class="proj" title="First-angle projection (ISO E)">
       <svg width="58" height="28" viewBox="0 0 58 28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4">
-        <path d="M2 6 L22 10 L22 18 L2 22 Z"/><line x1="0" y1="14" x2="24" y2="14" stroke-dasharray="3 2" stroke-width=".8"/>
+        <path d="M2 10 L22 6 L22 22 L2 18 Z"/><line x1="0" y1="14" x2="24" y2="14" stroke-dasharray="3 2" stroke-width=".8"/>
         <circle cx="44" cy="14" r="4"/><circle cx="44" cy="14" r="8"/><line x1="30" y1="14" x2="57" y2="14" stroke-dasharray="3 2" stroke-width=".8"/>
       </svg>
     </div>
     <div><span data-ui="tb_drawn"></span>K. Alhasan</div>
-    <div><span data-ui="tb_date"></span>2026-10-17</div>
+    <div><span data-ui="tb_date"></span>2026-10-19</div>
     <div><span data-ui="tb_scale"></span>1:1</div>
     <div><span data-ui="tb_size"></span>A4</div>
     <div class="last"><span data-ui="tb_dwg"></span>KA-2026-001</div>
-    <div class="last"><span data-ui="tb_rev"></span>E</div>
+    <div class="last"><span data-ui="tb_rev"></span>F</div>
     <div class="last"><span data-ui="tb_sheet"></span>1/1</div>
     <div class="last"><span data-ui="tb_status"></span><b class="ok" data-ui="tb_status_v"></b></div>
   </div>
@@ -284,7 +301,7 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
 const EMAIL = "kais.alhasan01@gmail.com";
 const UI = {
   nav:{en:["Projects","Experience","Leadership","About"],sv:["Projekt","Erfarenhet","Ledarskap","Om mig"]},
-  backhome:{en:"← Back to home",sv:"← Tillbaka till startsidan"}, allproj:{en:"All projects",sv:"Alla projekt"},
+  backhome:{en:"← Back to home",sv:"← Tillbaka till startsidan"}, allproj:{en:"All projects",sv:"Alla projekt"}, allproj_arrow:{en:"All projects →",sv:"Alla projekt →"},
   title:{en:"Mechanical engineering student in design automation and optimisation",sv:"Maskinteknikstudent inom designautomation och optimering"},
   p1:{en:"I'm in my final year of mechanical engineering at Linköping University, specialising in design and product development, and I'm finishing a business degree alongside it.",sv:"Jag går sista året på maskinteknik vid Linköpings universitet, med inriktning konstruktion och produktutveckling, och läser en ekonomexamen parallellt."},
   p2:{en:"I like automating the repetitive parts of engineering, and I usually ask what a solution costs before I ask how elegant it is.",sv:"Jag gillar att automatisera bort de repetitiva delarna av ingenjörsarbetet, och jag frågar oftast vad en lösning kostar innan jag frågar hur snygg den är."},
@@ -295,14 +312,13 @@ const UI = {
   g_study:{en:"Studies",sv:"Studier"}, g_study_v:{en:"M.Sc. Mechanical Engineering and B.Sc. Business Administration, both finishing June 2027",sv:"Civilingenjör maskinteknik och ekonomie kandidat, båda klara juni 2027"},
   g_ind:{en:"Industry",sv:"Industri"}, g_ind_v:{en:"3 summers at Scania (2022–2024), 1 summer at Väderstad (2025)",sv:"3 somrar på Scania (2022–2024), 1 sommar på Väderstad (2025)"},
   g_lang:{en:"Languages",sv:"Språk"}, g_lang_v:{en:"Swedish (fluent), English (fluent), Arabic (native)",sv:"Svenska (flytande), engelska (flytande), arabiska (modersmål)"},
-  work_h:{en:"Experience and projects",sv:"Erfarenhet och projekt"},
-  k_proj:{en:"Selected project",sv:"Utvalt projekt"}, k_exp:{en:"Experience",sv:"Erfarenhet"}, k_more:{en:"Other projects",sv:"Andra projekt"}, k_lead:{en:"Outside engineering",sv:"Utanför ingenjörsarbetet"}, k_edu:{en:"Education",sv:"Utbildning"},
+  glance_h:{en:"In short",sv:"I korthet"}, sel_h:{en:"Selected project",sv:"Utvalt projekt"}, read_proj:{en:"Read about the project →",sv:"Läs om projektet →"},
+  exp_more:{en:"All experience →",sv:"All erfarenhet →"}, lead_more:{en:"More about the coaching →",sv:"Mer om tränandet →"}, lead_h2:{en:"Outside engineering",sv:"Utanför ingenjörsarbetet"},
   hover:{en:"Hover over the image to play",sv:"Håll muspekaren över bilden för att spela upp"},
   exp_tile:{en:"Scania and Väderstad",sv:"Scania och Väderstad"},
   exp_tile_p:{en:"Three summers at Scania in engine assembly and procurement processes, then design work in Creo on Väderstad's seed drills.",sv:"Tre somrar på Scania inom motormontering och inköpsprocesser, sedan konstruktion i Creo på Väderstads såmaskiner."},
-  lead_tile:{en:"Wrestling coach",sv:"Brottningstränare"},
-  lead_tile_p:{en:"I coach children's wrestling in Ryd. My school programme there has reached 141 children so far.",sv:"Jag tränar barn i brottning i Ryd. Mitt skolprogram där har nått 141 barn hittills."},
-  edu_tile_p:{en:"Specialising in design and product development, with a business degree from LiU and Stockholm University alongside.",sv:"Inriktning konstruktion och produktutveckling, med en ekonomexamen från LiU och Stockholms universitet parallellt."},
+  lead_tile:{en:"Wrestling coach in Ryd",sv:"Brottningstränare i Ryd"},
+  lead_tile_p:{en:"I've wrestled since I was twelve, first in Syria and then in Sweden. Now I coach children every week, and my school programme in Ryd has reached 141 children so far.",sv:"Jag har brottats sedan jag var tolv, först i Syrien och sedan i Sverige. Nu tränar jag barn varje vecka, och mitt skolprogram i Ryd har nått 141 barn hittills."},
   proj_h:{en:"Projects",sv:"Projekt"}, proj_p:{en:"Each project is labelled with how far it has actually got.",sv:"Varje projekt är märkt med hur långt det faktiskt har kommit."},
   f_all:{en:"All",sv:"Alla"},
   st:{active:{en:"Active",sv:"Aktivt"},wip:{en:"In progress",sv:"Pågår"},ship:{en:"Done",sv:"Klart"},concept:{en:"Idea",sv:"Idé"}},
@@ -444,10 +460,8 @@ function home(){
     <div>
       <div class="who"><img src="img/profile-2026.jpg" alt="Kais Alhasan"><div><h1>Kais Alhasan</h1><div class="title">${U("title")}</div></div></div>
       <div class="bio"><p>${U("p1")}</p><p>${U("p2")}</p></div>
-    </div>
-    <div class="side">
-      <div class="box">
-        <div class="avail"><i></i>${U("avail")}</div>
+      <div class="cta">
+        <p class="avail">${U("avail")}</p>
         <div class="btns">
           <a class="btn primary js-email" href="mailto:${EMAIL}">${U("email")}</a>
           <a class="btn" href="cv-kais-alhasan.pdf" target="_blank" rel="noopener">${U("cv_btn")}</a>
@@ -455,33 +469,32 @@ function home(){
           <a class="btn" href="https://github.com/kaisalhasan01" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-      <div class="box"><h3>${U("tools_h")}</h3><dl class="stack">
-        <div><dt>CAD</dt><dd>CATIA V5, Creo, SolidWorks</dd></div>
-        <div><dt>${sv()?"Kod":"Code"}</dt><dd>Python, C#, VB.NET, MATLAB</dd></div>
-        <div><dt>ML</dt><dd>Unity ML-Agents, ONNX</dd></div>
-        <div><dt>Data</dt><dd>SQL, Power BI, Excel</dd></div>
-      </dl></div>
     </div>
+    <aside class="spec"><h2>${U("glance_h")}</h2><dl>
+      <div><dt>${U("g_study")}</dt><dd>${U("g_study_v")}</dd></div>
+      <div><dt>${U("g_ind")}</dt><dd>${U("g_ind_v")}</dd></div>
+      <div><dt>CAD</dt><dd>CATIA V5, Creo, SolidWorks</dd></div>
+      <div><dt>${sv()?"Kod":"Code"}</dt><dd>Python, C#, VB.NET, MATLAB</dd></div>
+      <div><dt>ML</dt><dd>Unity ML-Agents, ONNX</dd></div>
+      <div><dt>Data</dt><dd>SQL, Power BI, Excel</dd></div>
+      <div><dt>${U("g_lang")}</dt><dd>${U("g_lang_v")}</dd></div>
+    </dl></aside>
   </div>
-  <div class="wrap"><dl class="glance">
-    <div><dt>${U("g_study")}</dt><dd>${U("g_study_v")}</dd></div>
-    <div><dt>${U("g_ind")}</dt><dd>${U("g_ind_v")}</dd></div>
-    <div><dt>${U("g_lang")}</dt><dd>${U("g_lang_v")}</dd></div>
-  </dl></div>
   <section><div class="wrap">
-    <h2>${U("work_h")}</h2>
-    <div class="tiles">
-      <a class="card t-a" href="#/experience"><img src="img/scania-ceo.jpg" alt="Kais with Scania's CEO Christian Levin">
-        <div class="body"><div class="kicker">${U("k_exp")}</div><h3>${U("exp_tile")}</h3><p>${U("exp_tile_p")}</p></div></a>
-      <a class="card t-b" href="#/projects/${p.slug}">${thumb(p,L(p.title))}
-        <div class="body"><div class="kicker">${U("k_proj")} · ${badge(p.status)}</div><h3>${L(p.title)}</h3><p>${L(p.tilep)}</p><span class="playhint">${U("hover")}</span></div></a>
-      <a class="card t-c" href="#/projects"><div class="body"><div class="kicker">${U("k_more")}</div>
-        <ul class="mini">${others.map(o=>`<li><span>${L(o.title)}</span>${badge(o.status)}</li>`).join("")}</ul></div></a>
-      <a class="card t-d" href="#/leadership"><img src="img/eldsjal-gala.jpg" alt="" style="object-position:40% 65%">
-        <div class="body"><div class="kicker">${U("k_lead")}</div><h3>${U("lead_tile")}</h3><p>${U("lead_tile_p")}</p></div></a>
-      <a class="card t-e" href="#/about"><div class="body"><div class="kicker">${U("k_edu")}</div>
-        <h3>${sv()?"Civilingenjör maskinteknik, LiU":"M.Sc. Mechanical Engineering, LiU"}</h3><p>${U("edu_tile_p")}</p></div></a>
-    </div>
+    <div class="head"><h2>${U("sel_h")}</h2><a href="#/projects">${U("allproj_arrow")}</a></div>
+    <a class="feature" href="#/projects/${p.slug}">${thumb(p,L(p.title))}
+      <div>${badge(p.status)}<h3>${L(p.title)}</h3><p>${L(p.tilep)}</p><span class="playhint">${U("hover")}</span><span class="more">${U("read_proj")}</span></div></a>
+    <ul class="morelist">${others.map(o=>`<li><a href="#/projects/${o.slug}"><b>${L(o.title)}</b><small>${o.period} · ${o.tools.slice(0,3).join(", ")}</small>${badge(o.status)}</a></li>`).join("")}</ul>
+  </div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>${U("exp_h")}</h2></div>
+    <a class="pair" href="#/experience"><div class="pic"><img src="img/scania-ceo.jpg" alt="Kais with Scania's CEO Christian Levin"></div>
+      <div><h3>${U("exp_tile")}</h3><p>${U("exp_tile_p")}</p><span class="more">${U("exp_more")}</span></div></a>
+  </div></section>
+  <section><div class="wrap">
+    <div class="head"><h2>${U("lead_h2")}</h2></div>
+    <a class="pair flip" href="#/leadership"><div class="pic"><img src="img/eldsjal-gala.jpg" alt="Eldsjäl 2.0 participants at Eldsjälsgalan 2026" style="object-position:40% 65%"></div>
+      <div><h3>${U("lead_tile")}</h3><p>${U("lead_tile_p")}</p><span class="more">${U("lead_more")}</span></div></a>
   </div></section>`;
 }
 
