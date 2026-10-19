@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://kaisalhasan.com/">
 <meta property="og:title" content="Kais Alhasan, mechanical engineering student">
 <meta property="og:description" content="Design automation and optimisation. Looking for a master's thesis from January 2027.">
-<meta property="og:image" content="https://kaisalhasan.com/img/cable_two_still.png">
+<meta property="og:image" content="https://kaisalhasan.com/img/factory.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -37,10 +37,11 @@
 body{background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{max-width:100%;display:block}
-h1,h2,h3{font-family:Barlow,sans-serif;line-height:1.12;overflow-wrap:break-word;hyphens:auto}
+h1,h2,h3{font-family:Barlow,sans-serif;line-height:1.15;overflow-wrap:break-word}
 .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 .wrap.wide{max-width:1440px}
 @media(min-width:720px){.wrap{padding:0 40px}}
+@media(max-width:720px){body{font-size:16px}h1.page{font-size:1.8rem}h2{font-size:1.35rem}.lead{font-size:1rem}.who h1{font-size:1.9rem}.who .title{font-size:1rem}.job h3{font-size:1.1rem}section{padding:40px 0}}
 .muted{color:var(--ink2)}
 
 /* menu band */
@@ -54,7 +55,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;min-heig
 .brand svg .o{fill:none;stroke:var(--band-ink);stroke-width:1.6;stroke-linejoin:round}
 .brand svg .c{stroke:var(--red);stroke-width:1.1;stroke-dasharray:6 2 1.5 2}
 .nav-links{display:flex;gap:6px;flex-wrap:wrap}
-.nav-links a{text-decoration:none;font:600 1.08rem Barlow;padding:8px 14px;border-radius:8px;color:var(--band-ink)}
+.nav-links a{text-decoration:none;font:600 1.08rem Barlow;padding:8px 14px;border-radius:4px;color:var(--band-ink)}
 .nav-links a:hover{background:var(--band-btn)}
 .nav-links a.on{background:var(--band-ink);color:var(--band)}
 .tools{display:flex;gap:6px}
@@ -62,7 +63,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;min-heig
 .chip[aria-pressed="true"]{border-color:var(--red);color:var(--red-ink)}
 nav .chip{background:var(--band-btn);border-color:var(--band-line);color:var(--band-ink)}
 nav .chip[aria-pressed="true"]{border-color:var(--yellow);color:var(--yellow)}
-@media(max-width:720px){.nav-links{order:3;width:100%;padding-bottom:10px;flex-wrap:nowrap;gap:2px;justify-content:space-between}.nav-links a{padding:6px 8px;font-size:min(1rem,4.1vw);white-space:nowrap}}
+@media(max-width:720px){nav .wrap{padding-top:10px;row-gap:8px}.nav-links{order:3;width:100%;padding-bottom:10px;flex-wrap:nowrap;gap:2px;justify-content:space-between}.nav-links a{padding:6px 8px;font-size:min(1rem,4.1vw);white-space:nowrap}}
 
 /* back link */
 .back{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding-top:26px;font-weight:600}
@@ -72,9 +73,10 @@ nav .chip[aria-pressed="true"]{border-color:var(--yellow);color:var(--yellow)}
 
 /* buttons */
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:8px;font:600 .98rem Barlow;text-decoration:none;border:1px solid var(--line);background:var(--bg2);color:var(--ink);max-width:100%;overflow-wrap:anywhere;cursor:pointer}
-.btn:hover{border-color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:4px;font:600 .98rem Barlow;text-decoration:none;border:1px solid var(--line);background:var(--bg2);color:var(--ink);max-width:100%;white-space:nowrap;cursor:pointer;transition:background-color .15s,border-color .15s}
+.btn:hover{border-color:var(--ink2);background:var(--bg3)}
 .btn.primary{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.btn.primary:hover{background:var(--red-ink);border-color:var(--red-ink)}
 .status{display:inline-block;font:600 .74rem Barlow;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px;white-space:nowrap}
 .status.active{background:var(--red);color:var(--on-red)}
 .status.wip{background:var(--yellow);color:var(--on-yellow)}
@@ -85,7 +87,7 @@ nav .chip[aria-pressed="true"]{border-color:var(--yellow);color:var(--yellow)}
 section{padding:56px 0}
 section + section{border-top:1px solid var(--line)}
 h1.page{font-size:clamp(2rem,5vw,2.8rem);font-weight:600;margin:16px 0 10px}
-.lead{max-width:40em;color:var(--ink2);font-size:1.08rem}
+.lead{max-width:40em;color:var(--ink);font-size:1.08rem}
 h2{font-size:1.6rem;font-weight:600;margin-bottom:22px}
 h3{font-size:1.2rem;font-weight:600}
 
@@ -93,30 +95,30 @@ h3{font-size:1.2rem;font-weight:600}
 .hero{display:grid;gap:22px;padding-top:40px;padding-bottom:28px;grid-template-columns:minmax(0,1fr);align-items:start}
 @media(min-width:900px){.hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px}}
 .who{display:flex;gap:22px;align-items:center}
-.who img{width:clamp(110px,16vw,150px);aspect-ratio:1;object-fit:cover;border-radius:12px;background:#fff;border:1px solid var(--line);flex:none}
+.who img{width:clamp(104px,16vw,156px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid var(--bg2);box-shadow:0 0 0 1px var(--line);flex:none}
 .who h1{font-size:clamp(2.2rem,5vw,3.3rem);font-weight:700;letter-spacing:-.01em}
 .who .title{font:600 clamp(1.05rem,2vw,1.25rem) Barlow;color:var(--ink2);margin-top:6px;max-width:22em}
 .bio{margin-top:22px;max-width:36em}
 .bio p{margin-bottom:10px}
 .side{display:grid;gap:16px}
-.box{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:22px}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:22px}
 .avail{display:flex;align-items:center;gap:10px;font:600 1.05rem Barlow;margin-bottom:14px}
 .avail i{width:10px;height:10px;border-radius:50%;background:var(--green);flex:none}
 .side .btns .btn{flex:1 1 40%}
 .box h3{font-size:1rem;color:var(--ink2);margin-bottom:12px}
 .stack{display:grid;gap:8px}
-.stack div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;font-size:.97rem}
+.stack div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;font-size:.95rem}
 .stack dt{font-weight:600}
 .stack dd{color:var(--ink2)}
 .glance{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--line);margin-top:4px}
 @media(min-width:900px){.glance{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px}}
-.glance div{padding:12px 0;border-bottom:1px solid var(--line);font-size:.97rem}
+.glance div{padding:12px 0;border-bottom:1px solid var(--line);font-size:.95rem}
 .glance dt{color:var(--ink2);font-weight:600;font-size:.88rem}
 
 /* tiles */
 .tiles{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
 @media(min-width:860px){.tiles{grid-template-columns:repeat(6,minmax(0,1fr))}.t-a{grid-column:span 4;grid-row:span 2}.t-b{grid-column:span 2;grid-row:span 2}.t-c,.t-d,.t-e{grid-column:span 2}}
-a.card{display:flex;flex-direction:column;text-decoration:none;background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+a.card{display:flex;flex-direction:column;text-decoration:none;background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden}
 a.card:hover{border-color:var(--ink2)}
 a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
 .card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-bottom:1px solid var(--line)}
@@ -124,7 +126,7 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .t-b img{aspect-ratio:1/1}
 .card .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card .kicker{font:600 .85rem Barlow;color:var(--ink2)}
-.card p{color:var(--ink2);font-size:.97rem}
+.card p{color:var(--ink2);font-size:.95rem}
 .mini{list-style:none;display:grid;gap:8px}
 .mini li{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:.95rem}
 .playhint{font-size:.8rem;color:var(--ink2)}
@@ -134,10 +136,10 @@ a.card:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-
 .plist{border-top:1px solid var(--line)}
 a.prow{display:grid;grid-template-columns:minmax(0,1fr);gap:10px 28px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
 @media(min-width:760px){a.prow{grid-template-columns:240px minmax(0,1fr) auto}}
-a.prow img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
-a.prow .noimg{aspect-ratio:16/10;border-radius:8px;border:1px dashed var(--line)}
+a.prow img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+a.prow .noimg{aspect-ratio:16/10;border-radius:4px;border:1px dashed var(--line)}
 a.prow:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
-a.prow p{color:var(--ink2);font-size:.97rem;margin-top:6px}
+a.prow p{color:var(--ink2);font-size:.95rem;margin-top:6px}
 a.prow .meta{font-size:.88rem;color:var(--ink2);margin-top:8px}
 
 /* project page */
@@ -145,12 +147,12 @@ a.prow .meta{font-size:.88rem;color:var(--ink2);margin-top:8px}
 @media(min-width:760px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .facts dt{color:var(--ink2);font-weight:600;font-size:.88rem}
 figure{margin:0}
-figure img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+figure img{width:100%;height:auto;border-radius:4px;border:1px solid var(--line)}
 figure.lead-media{display:table;max-width:100%;margin:0 auto}
 figure.lead-media figcaption{display:table-caption;caption-side:bottom}
 figure.lead-media img{width:auto;max-width:100%;max-height:min(62vh,540px)}
 figcaption{font-size:.9rem;color:var(--ink2);margin-top:8px}
-table.res{width:100%;border-collapse:collapse;font-size:.97rem}
+table.res{width:100%;border-collapse:collapse;font-size:.95rem}
 table.res th,table.res td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
 table.res th{font:600 .88rem Barlow;color:var(--ink2)}
 table.res .n{text-align:right;font-family:"JetBrains Mono",monospace;white-space:nowrap}
@@ -190,11 +192,12 @@ table.res .n{text-align:right;font-family:"JetBrains Mono",monospace;white-space
 .photos{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
 @media(min-width:760px){.photos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .photos img{aspect-ratio:4/3;object-fit:cover}
-.courses{columns:1;column-gap:32px;font-size:.97rem}
+.courses{columns:1;column-gap:32px;font-size:.95rem}
 @media(min-width:720px){.courses{columns:2}}
 .courses li{break-inside:avoid;margin:0 0 6px 18px}
 .edu > div{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
 .edu > div:last-child{border:0}
+.edu p{font-size:.95rem}
 .edu img{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#fff;flex:none;border:0}
 .edu .ph{width:48px;height:48px;border-radius:50%;flex:none;background:var(--bg3)}
 
@@ -206,8 +209,9 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
 .contact p{color:var(--band-ink2);margin-bottom:18px}
 .contact .rows{display:grid;gap:10px;max-width:460px}
 .contact .btn{background:var(--band-btn);border-color:var(--band-line);color:var(--band-ink)}
-.contact .btn:hover{border-color:var(--band-ink2)}
+.contact .btn:hover{border-color:var(--band-ink2);background:var(--band-line)}
 .contact .btn.primary{background:var(--red);border-color:var(--red);color:#fff;width:100%;font-size:1.05rem;padding:12px 16px}
+.contact .btn.primary:hover{background:#a80d26;border-color:#a80d26}
 .contact .btns .btn{flex:1 1 0}
 .tb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--band-ink);font:500 .78rem "JetBrains Mono",monospace}
 .tb > div{padding:5px 8px;border-right:1px solid var(--band-ink);border-bottom:1px solid var(--band-ink);min-width:0;overflow-wrap:anywhere}
@@ -282,8 +286,8 @@ const UI = {
   nav:{en:["Projects","Experience","Leadership","About"],sv:["Projekt","Erfarenhet","Ledarskap","Om mig"]},
   backhome:{en:"← Back to home",sv:"← Tillbaka till startsidan"}, allproj:{en:"All projects",sv:"Alla projekt"},
   title:{en:"Mechanical engineering student in design automation and optimisation",sv:"Maskinteknikstudent inom designautomation och optimering"},
-  p1:{en:"Final year at Linköping University, specialising in design and product development, with a business degree alongside.",sv:"Sista året vid Linköpings universitet, inriktning konstruktion och produktutveckling, med en ekonomexamen vid sidan av."},
-  p2:{en:"I like taking repetitive work out of engineering, and I usually ask what a solution costs before I ask how elegant it is.",sv:"Jag gillar att ta bort repetitivt arbete ur ingenjörsjobbet, och jag frågar oftast vad en lösning kostar innan jag frågar hur snygg den är."},
+  p1:{en:"I'm in my final year of mechanical engineering at Linköping University, specialising in design and product development, and I'm finishing a business degree alongside it.",sv:"Jag går sista året på maskinteknik vid Linköpings universitet, med inriktning konstruktion och produktutveckling, och läser en ekonomexamen parallellt."},
+  p2:{en:"I like automating the repetitive parts of engineering, and I usually ask what a solution costs before I ask how elegant it is.",sv:"Jag gillar att automatisera bort de repetitiva delarna av ingenjörsarbetet, och jag frågar oftast vad en lösning kostar innan jag frågar hur snygg den är."},
   avail:{en:"Looking for a master's thesis from January 2027",sv:"Söker exjobb från januari 2027"},
   email:{en:"Email me",sv:"Mejla mig"}, cv_btn:{en:"Download CV",sv:"Ladda ner CV"},
   copied:{en:"Email address copied",sv:"Mejladressen är kopierad"}, openmail:{en:"Open mail app",sv:"Öppna mejlappen"},
@@ -291,15 +295,15 @@ const UI = {
   g_study:{en:"Studies",sv:"Studier"}, g_study_v:{en:"M.Sc. Mechanical Engineering and B.Sc. Business Administration, both finishing June 2027",sv:"Civilingenjör maskinteknik och ekonomie kandidat, båda klara juni 2027"},
   g_ind:{en:"Industry",sv:"Industri"}, g_ind_v:{en:"3 summers at Scania (2022–2024), 1 summer at Väderstad (2025)",sv:"3 somrar på Scania (2022–2024), 1 sommar på Väderstad (2025)"},
   g_lang:{en:"Languages",sv:"Språk"}, g_lang_v:{en:"Swedish (fluent), English (fluent), Arabic (native)",sv:"Svenska (flytande), engelska (flytande), arabiska (modersmål)"},
-  work_h:{en:"Experience and work",sv:"Erfarenhet och projekt"},
+  work_h:{en:"Experience and projects",sv:"Erfarenhet och projekt"},
   k_proj:{en:"Selected project",sv:"Utvalt projekt"}, k_exp:{en:"Experience",sv:"Erfarenhet"}, k_more:{en:"Other projects",sv:"Andra projekt"}, k_lead:{en:"Outside engineering",sv:"Utanför ingenjörsarbetet"}, k_edu:{en:"Education",sv:"Utbildning"},
-  hover:{en:"Hover to play",sv:"Håll muspekaren över för att spela"},
+  hover:{en:"Hover over the image to play",sv:"Håll muspekaren över bilden för att spela upp"},
   exp_tile:{en:"Scania and Väderstad",sv:"Scania och Väderstad"},
   exp_tile_p:{en:"Three summers at Scania in engine assembly and procurement processes, then design work in Creo on Väderstad's seed drills.",sv:"Tre somrar på Scania inom motormontering och inköpsprocesser, sedan konstruktion i Creo på Väderstads såmaskiner."},
   lead_tile:{en:"Wrestling coach",sv:"Brottningstränare"},
   lead_tile_p:{en:"I coach children's wrestling in Ryd. My school programme there has reached 141 children so far.",sv:"Jag tränar barn i brottning i Ryd. Mitt skolprogram där har nått 141 barn hittills."},
-  edu_tile_p:{en:"Design and Product Development, plus a business degree at LiU and Stockholm University.",sv:"Konstruktion och produktutveckling, plus ekonomexamen vid LiU och Stockholms universitet."},
-  proj_h:{en:"Projects",sv:"Projekt"}, proj_p:{en:"Each project is labelled with where it actually stands.",sv:"Varje projekt är märkt med var det faktiskt står."},
+  edu_tile_p:{en:"Specialising in design and product development, with a business degree from LiU and Stockholm University alongside.",sv:"Inriktning konstruktion och produktutveckling, med en ekonomexamen från LiU och Stockholms universitet parallellt."},
+  proj_h:{en:"Projects",sv:"Projekt"}, proj_p:{en:"Each project is labelled with how far it has actually got.",sv:"Varje projekt är märkt med hur långt det faktiskt har kommit."},
   f_all:{en:"All",sv:"Alla"},
   st:{active:{en:"Active",sv:"Aktivt"},wip:{en:"In progress",sv:"Pågår"},ship:{en:"Done",sv:"Klart"},concept:{en:"Idea",sv:"Idé"}},
   m_year:{en:"When",sv:"När"}, m_ctx:{en:"Context",sv:"Sammanhang"}, m_role:{en:"Role",sv:"Roll"}, m_tools:{en:"Tools",sv:"Verktyg"},
@@ -316,31 +320,9 @@ const UI = {
 
 /* still = thumbnail, anim = recording that plays on hover (and always on the project page) */
 const PROJECTS = [
- {slug:"cable-routing", status:"ship", still:"img/cable_two_still.png", anim:"img/cable_two.webp",
-  heroCap:{en:"Recorded from the built demo: two cables routed in one world by the trained agent. The faint grey line is the shortest legal grid route.",sv:"Inspelat från det byggda demot: två kablar dragna i samma värld av den tränade agenten. Den svaga grå linjen är den kortaste tillåtna rutnätsvägen."},
-  title:{en:"Cable routing with reinforcement learning",sv:"Kabeldragning med förstärkningsinlärning"},
-  short:{en:"Software agents that route cables through 3D CAD geometry without breaking the bend radius or crossing another cable.",sv:"Mjukvaruagenter som drar kablar genom 3D-CAD-geometri utan att bryta böjradien eller korsa en annan kabel."},
-  tilep:{en:"The final agent finds a route on 85 of 90 long test routes through an engine bay it has never seen.",sv:"Den slutliga agenten hittar en väg på 85 av 90 långa testrutter genom ett motorrum den aldrig sett."},
-  period:"2025–2026", ctx:{en:"Started in TMKU01 Design Automation at LiU, then rebuilt on my own",sv:"Startade i TMKU01 Designautomation på LiU, sedan ombyggt på egen hand"},
-  role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Unity ML-Agents (PPO)","C#","Python","ONNX"],
-  problem:{en:"Routing a wire harness through an engine bay is still mostly manual CAD work. The cable has to clear every component, keep its minimum bend radius and stay away from other cables, and every design change means doing it again.",
-           sv:"Att dra kablage genom ett motorrum är fortfarande mest manuellt CAD-arbete. Kabeln ska gå fri från alla komponenter, hålla sin minsta böjradie och hållas borta från andra kablar, och varje konstruktionsändring betyder att det görs om."},
-  approach:{en:["Trained agents in Unity ML-Agents on increasingly crowded 3D layouts, with the difficulty raised automatically as they improved.","Gave the agent a hint: the shortest route a simple grid search can find. It is not rewarded for following it, so it can leave it when there is a better way.","Turned a CAD model of an engine bay into a voxel grid and ran the trained model in plain Python, so it works without Unity.","Compared every version on the same 90 test routes and checked the differences with a paired statistical test (McNemar)."],
-            sv:["Tränade agenter i Unity ML-Agents på allt trängre 3D-layouter, där svårigheten höjdes automatiskt när de blev bättre.","Gav agenten en ledtråd: den kortaste vägen en enkel rutnätssökning hittar. Den belönas inte för att följa den, så den kan lämna den när det finns en bättre väg.","Gjorde om en CAD-modell av ett motorrum till ett voxelrutnät och körde den tränade modellen i vanlig Python, utan Unity.","Jämförde alla versioner på samma 90 testrutter och kontrollerade skillnaderna med ett parat statistiskt test (McNemar)."]},
-  cols:{a:{en:"Previous agent",sv:"Förra agenten"},b:{en:"Final agent",sv:"Slutlig agent"}},
-  results:[
-    {k:{en:"Long routes solved (out of 90)",sv:"Lösta långa rutter (av 90)"}, a:"50", b:"85"},
-    {k:{en:"Same test, 90 new routes (out of 90)",sv:"Samma test, 90 nya rutter (av 90)"}, a:"53", b:"84"},
-    {k:{en:"Steering jitter, median (lower is smoother)",sv:"Styrryck, median (lägre är jämnare)"}, a:"0.33", b:"0.16"},
-  ],
-  resultNote:{en:"Paired McNemar test, p < 0.0001 on both route sets. For comparison, a classical planner with smoothing solves 90 of 90 for a single cable, about 3 % shorter. Where learning could win is several cables at once, which is the natural next step.",sv:"Parat McNemar-test, p < 0,0001 på båda ruttuppsättningarna. Som jämförelse löser en klassisk planerare med utjämning 90 av 90 för en enskild kabel, cirka 3 % kortare. Där inlärning kan vinna är flera kablar samtidigt, vilket är det naturliga nästa steget."},
-  myrole:{en:"I designed the experiments, ran the training and wrote the evaluation, with AI pair-programming for much of the code. The course gave me the problem; the rebuild after it is my own.",sv:"Jag utformade experimenten, körde träningen och skrev utvärderingen, med AI som programmeringshjälp för mycket av koden. Kursen gav mig problemet; ombyggnaden efteråt är min egen."},
-  figs:[{src:"img/cable_continuous.webp",cap:{en:"The continuous agent steers instead of stepping between cells, so the bend radius is part of the motion.",sv:"Den kontinuerliga agenten styr i stället för att gå mellan celler, så böjradien är en del av rörelsen."}},
-        {src:"img/engine_bay_continuous_v4.png",cap:{en:"In the voxelized engine bay, with the demo's own counters: 24.5 cells of cable against a 32-cell grid route.",sv:"I det voxeliserade motorrummet, med demots egna räknare: 24,5 celler kabel mot en rutnätsväg på 32 celler."}},
-        {src:"img/results_engine_bay.png",wide:true,cap:{en:"Solved long routes for every version I trained. Green is the final agent.",sv:"Lösta långa rutter för varje version jag tränat. Grönt är den slutliga agenten."}}],
-  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/cable-routing-rl"}]},
  {slug:"factory-planner", status:"ship", still:"img/factory.png", anim:"img/factory_demo.webp",
   heroCap:{en:"The whole workflow, recorded from the program: the hall is cut to shape, the equipment goes in, the conveyor is drawn and checked, and the drawing takes 3D form.",sv:"Hela arbetsflödet, inspelat från programmet: hallen formas, utrustningen placeras, bandet ritas och kontrolleras, och ritningen tar 3D-form."},
+  tilep:{en:"On random test layouts it routed 97–99&nbsp;% of the conveyors, and every finished route passed a separate rule check.",sv:"På slumpade testlayouter drog det 97–99&nbsp;% av transportbanden, och varje färdig dragning klarade en separat regelkontroll."},
   title:{en:"Factory layout planner: from blueprint to 3D",sv:"Fabrikslayoutplanerare: från ritning till 3D"},
   short:{en:"Plan a production line in four checked steps: shape the floor, place the equipment, lay the conveyor, and watch the drawing take 3D form.",sv:"Planera en produktionslina i fyra kontrollerade steg: forma golvet, placera utrustningen, dra transportbandet och se ritningen ta 3D-form."},
   period:"2026", ctx:{en:"Own project, based on a TMKT57 Product Modelling assignment at LiU",sv:"Eget projekt, utifrån en uppgift i TMKT57 Produktmodellering på LiU"},
@@ -348,7 +330,7 @@ const PROJECTS = [
   problem:{en:"The expensive mistakes in a production line are made while planning it: a robot arm with no room to swing, a drill head over a bend in the conveyor, a conveyor that cannot reach a station. On paper they are easy to miss; on the shop floor they cost a rebuild.",
            sv:"De dyra misstagen i en produktionslina görs när den planeras: en robotarm utan plats att svänga, ett borrhuvud över en kurva i bandet, ett band som inte når en station. På papper är de lätta att missa; på verkstadsgolvet kostar de en ombyggnad."},
   approach:{en:["A layout engine in C# knows how much space each piece of equipment needs. A robot arm stands on one tile but needs the 3×3 around it, a drill works on the tile in front of it, and a machine is loaded from one side. Every edit is checked against these rules, with a suggested fix for each problem.","The conveyor is laid in 90° modules from IN through every station to OUT. A shortest-path search with backtracking routes it, or you draw it yourself and it is checked as you draw.","A Unity editor takes you through four steps (floor, equipment, conveyor, 3D) with a guided tour, then turns the blueprint into a running 3D line."],
-            sv:["En layoutmotor i C# vet hur mycket plats varje utrustning behöver. En robotarm står på en ruta men behöver 3×3 runt sig, en borr arbetar på rutan framför sig och en maskin laddas från en sida. Varje ändring kontrolleras mot de reglerna, med ett förslag på åtgärd för varje problem.","Bandet läggs i 90°-moduler från IN genom varje station till UT. En kortaste-väg-sökning med backtracking drar det, eller så ritar man det själv och det kontrolleras medan man ritar.","En Unity-editor tar en genom fyra steg (golv, utrustning, band, 3D) med en guidad tur, och gör sedan om ritningen till en 3D-lina som går."]},
+            sv:["En layoutmotor i C# vet hur mycket plats varje utrustning behöver. En robotarm står på en ruta men behöver 3×3 runt sig, en borr arbetar på rutan framför sig och en maskin laddas från en sida. Varje ändring kontrolleras mot de reglerna, med ett förslag på åtgärd för varje problem.","Bandet läggs i 90°-moduler från IN genom varje station till UT. En kortaste-väg-sökning med backtracking drar det, eller så ritar du det själv och det kontrolleras medan du ritar.","En Unity-editor leder dig genom fyra steg (golv, utrustning, band, 3D) med en guidad tur, och gör sedan om ritningen till en 3D-lina i drift."]},
   cols:{a:{en:"Fixed order",sv:"Fast ordning"}, b:{en:"Tool picks order",sv:"Verktyget väljer"}},
   results:[
     {k:{en:"Random layouts routed, 6 × 4 m, 3 stations (of 300)",sv:"Slumpade layouter dragna, 6 × 4 m, 3 stationer (av 300)"}, a:"223", b:"297"},
@@ -364,13 +346,47 @@ const PROJECTS = [
         {src:"img/factory_morph.webp",cap:{en:"The blueprint taking 3D form.",sv:"Ritningen tar 3D-form."}},
         {src:"img/factory.png",cap:{en:"The same line in 3D, with the robot arms working and products on the belt.",sv:"Samma lina i 3D, med robotarmarna i arbete och produkter på bandet."}}],
   links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/factory-layout-generator"},{t:{en:"Download for Windows",sv:"Ladda ner för Windows"},href:"https://github.com/kaisalhasan01/factory-layout-generator/releases/tag/v1.0"}]},
+ {slug:"cable-routing", status:"ship", still:"img/cable_two_still.png", anim:"img/cable_two.webp",
+  heroCap:{en:"Recorded from the demo build: two cables routed in one world by the trained agent. The faint grey line is the shortest legal grid route.",sv:"Inspelat från det byggda demot: två kablar dragna i samma värld av den tränade agenten. Den svaga grå linjen är den kortaste tillåtna rutnätsvägen."},
+  title:{en:"Cable routing with reinforcement learning",sv:"Kabeldragning med förstärkningsinlärning"},
+  short:{en:"Software agents that route cables through 3D CAD geometry, keeping the minimum bend radius and never crossing another cable.",sv:"Mjukvaruagenter som drar kablar genom 3D-CAD-geometri utan att gå under minsta böjradie eller korsa en annan kabel."},
+  tilep:{en:"The final agent finds a route on 85 of 90 long test routes through an engine bay it has never seen.",sv:"Den färdiga agenten hittar en väg på 85 av 90 långa testrutter genom ett motorrum den aldrig har sett."},
+  period:"2025–2026", ctx:{en:"Started in the course TMKU01 Design Automation at LiU, then rebuilt on my own",sv:"Påbörjat i kursen TMKU01 Designautomation på LiU och sedan ombyggt på egen hand"},
+  role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Unity ML-Agents (PPO)","C#","Python","ONNX"],
+  problem:{en:"Routing a wire harness through an engine bay is still mostly manual CAD work. The cable has to clear every component, keep its minimum bend radius and stay away from other cables, and every design change means doing it again.",
+           sv:"Att dra kablage genom ett motorrum är fortfarande mest manuellt CAD-arbete. Kabeln ska gå fri från alla komponenter, hålla sin minsta böjradie och hållas borta från andra kablar, och vid varje konstruktionsändring får man göra om det."},
+  approach:{en:["Trained agents in Unity ML-Agents on increasingly crowded 3D layouts, with the difficulty raised automatically as they improved.","Gave the agent a hint: the shortest route a simple grid search can find. It is not rewarded for following it, so it can leave it when there is a better way.","Turned a CAD model of an engine bay into a voxel grid and ran the trained model in plain Python, so it works without Unity.","Compared every version on the same 90 test routes and checked the differences with a paired statistical test (McNemar)."],
+            sv:["Tränade agenter i Unity ML-Agents på allt trängre 3D-layouter, där svårigheten höjdes automatiskt när de blev bättre.","Gav agenten en ledtråd: den kortaste vägen en enkel rutnätssökning hittar. Den belönas inte för att följa den, så den kan lämna den när det finns en bättre väg.","Gjorde om en CAD-modell av ett motorrum till ett voxelrutnät och körde den tränade modellen i ren Python, utan Unity.","Jämförde alla versioner på samma 90 testrutter och kontrollerade skillnaderna med ett parat statistiskt test (McNemar)."]},
+  cols:{a:{en:"Previous agent",sv:"Förra agenten"},b:{en:"Final agent",sv:"Färdig agent"}},
+  results:[
+    {k:{en:"Long routes solved (out of 90)",sv:"Lösta långa rutter (av 90)"}, a:"50", b:"85"},
+    {k:{en:"Same test, 90 new routes (out of 90)",sv:"Samma test, 90 nya rutter (av 90)"}, a:"53", b:"84"},
+    {k:{en:"Steering jitter, median (lower is smoother)",sv:"Styrryck, median (lägre är jämnare)"}, a:"0.33", b:"0.16"},
+  ],
+  resultNote:{en:"Paired McNemar test, p < 0.0001 on both route sets. For comparison, a classical planner with smoothing solves 90 of 90 for a single cable, about 3&nbsp;% shorter. Where learning could win is when many cables share the same space (see Next).",sv:"Parat McNemar-test, p < 0,0001 på båda ruttuppsättningarna. Som jämförelse löser en klassisk planerare med utjämning 90 av 90 för en enskild kabel, cirka 3&nbsp;% kortare. Där inlärning kan vinna är när många kablar delar samma utrymme (se Nästa steg)."},
+  myrole:{en:"I designed the experiments, ran the training and wrote the evaluation, with AI pair-programming for much of the code. The course gave me the problem; the rebuild after it is my own.",sv:"Jag utformade experimenten, körde träningen och skrev utvärderingen, med AI som programmeringshjälp för mycket av koden. Kursen gav mig problemet; ombyggnaden efteråt är min egen."},
+  next:{en:"Real harnesses have hundreds of cables, and then the hard part is no longer a single route but the order. A cable routed early can block the ones that come after it, so choosing the order becomes an optimisation problem of its own. The next step is to let the system decide which cable to route first, and to compare the result with industrial cable tools such as IPS from Fraunhofer-Chalmers Centre.",sv:"Riktiga kablage har hundratals kablar, och då är det svåra inte längre en enskild väg utan ordningen. En kabel som dras tidigt kan blockera de som kommer efter, så att välja ordning blir ett eget optimeringsproblem. Nästa steg är att låta systemet avgöra vilken kabel som ska dras först, och att jämföra resultatet med industriella kabelverktyg som IPS från Fraunhofer-Chalmers Centre."},
+  figs:[{src:"img/cable_continuous.webp",cap:{en:"The continuous agent steers instead of stepping between cells, so the bend radius is part of the motion.",sv:"Den kontinuerliga agenten styr i stället för att gå mellan celler, så böjradien är en del av rörelsen."}},
+        {src:"img/engine_bay_continuous_v4.png",cap:{en:"In the voxelised engine bay, with the demo's own counters: 24.5 cells of cable against a 32-cell grid route.",sv:"I det voxeliserade motorrummet, med demots egna räknare: 24,5 celler kabel mot en rutnätsväg på 32 celler."}},
+        {src:"img/results_engine_bay.png",wide:true,cap:{en:"Solved long routes for every version I trained. Green is the final agent.",sv:"Lösta långa rutter för varje version jag har tränat. Grönt är den färdiga agenten."}}],
+  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/cable-routing-rl"}]},
+ {slug:"test-slot-monitor", status:"ship", still:"img/testslot_still.png", anim:"img/testslot_demo.webp", imgTop:true,
+  heroCap:{en:"Recorded in June 2025: the first run, the automatic re-run ten minutes later, the email it sent when an earlier slot appeared, and the confirmation with the new test booked and the old one cancelled. Personal details are blurred or cut.",sv:"Inspelat i juni 2025: första körningen, den automatiska omkörningen tio minuter senare, mejlet den skickade när en tidigare tid dök upp, och bekräftelsen med det nya provet bokat och det gamla avbokat. Personuppgifter är suddade eller bortklippta."},
+  title:{en:"Driving-test slot monitor",sv:"Bevakning av lediga uppkörningstider"},
+  short:{en:"A script that watched Trafikverket's booking site for cancelled motorcycle tests and emailed me when an earlier slot opened. It got me a test date weeks earlier.",sv:"Ett skript som bevakade Trafikverkets bokningssida efter avbokade MC-prov och mejlade mig när en tidigare tid dök upp. Jag fick en provtid flera veckor tidigare."},
+  period:"2025", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Python","Selenium"],
+  problem:{en:"Trafikverket doesn't notify you about cancellations. The only way to find one is to keep refreshing the page.",sv:"Trafikverket meddelar inte avbokningar. Enda sättet att hitta en är att ladda om sidan gång på gång."},
+  approach:{en:["After one manual BankID login, Selenium reuses the session and walks through the booking pages.","It checks every ten minutes, at roughly the pace a person would, and sends an email when an earlier date shows up."],sv:["Efter en manuell BankID-inloggning återanvänder Selenium sessionen och går igenom bokningssidorna.","Den kollar var tionde minut, ungefär i den takt en människa skulle, och skickar ett mejl när ett tidigare datum dyker upp."]},
+  resultText:{en:"I booked and passed my motorcycle test weeks before my original date.",sv:"Jag bokade och klarade MC-provet veckor före mitt ursprungliga datum."},
+  myrole:{en:"Everything.",sv:"Allt."}, figs:[],
+  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/Swedish-Transport-Administration-Driving-Test-Slot-Monitor"}]},
  {slug:"car-deal-finder", status:"active", still:"img/cardeal.png", imgTop:true, noHero:true,
   title:{en:"Used-car advisor",sv:"Rådgivare för begagnade bilar"},
   short:{en:"Values every used car on Blocket against similar listings and ranks them by how well they fit the buyer, not just by price. The project I'm using to learn SQL properly.",sv:"Värderar varje begagnad bil på Blocket mot liknande annonser och rankar dem efter hur väl de passar köparen, inte bara efter pris. Projektet jag använder för att lära mig SQL på riktigt."},
   period:"2026–", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Sole developer",sv:"Ensam utvecklare"},
   tools:["Python","SQL (SQLite)","Power BI","Streamlit"],
   problem:{en:"The cheapest car is rarely the best buy. Mileage, equipment, known faults and running costs decide what a car is worth to a particular buyer.",sv:"Den billigaste bilen är sällan det bästa köpet. Miltal, utrustning, kända fel och driftkostnad avgör vad bilen är värd för en viss köpare."},
-  approach:{en:["A regression model estimates each car's market value from similar listings (same model, age, mileage for its age), with an uncertainty band.","Listings and daily price snapshots go into a SQLite star schema, queried with SQL and built for Power BI.","You choose what matters most (a good deal, reliability, fuel economy, staying under budget) and the ranking follows your weights."],sv:["En regressionsmodell uppskattar varje bils marknadsvärde från liknande annonser (samma modell, ålder, miltal för åldern), med ett osäkerhetsintervall.","Annonser och dagliga prisögonblicksbilder sparas i ett stjärnschema i SQLite, som jag frågar med SQL och som är byggt för Power BI.","Man väljer vad som är viktigast (bra affär, pålitlighet, bränslesnålhet, att hålla budgeten) och rankingen följer ens viktning."]},
+  approach:{en:["A regression model estimates each car's market value from similar listings (same model, age, mileage for its age), with an uncertainty band.","Listings and their daily prices go into a SQLite star schema that I query with SQL and that is built for Power BI.","You choose what matters most (a good deal, reliability, fuel economy, staying under budget) and the ranking follows your weights."],sv:["En regressionsmodell uppskattar varje bils marknadsvärde från liknande annonser (samma modell, ålder, miltal för åldern), med ett osäkerhetsintervall.","Annonserna och deras pris dag för dag sparas i ett stjärnschema i SQLite, som jag frågar med SQL och som är byggt för Power BI.","Du väljer vad som är viktigast (bra affär, pålitlighet, bränslesnålhet, att hålla budgeten) och rankingen följer din viktning."]},
   resultText:{en:"Working on demo data. Next: real listings over a few weeks, the SQL analysis behind them, and a Power BI dashboard.",sv:"Fungerar på demodata. Nästa steg: riktiga annonser under några veckor, SQL-analysen bakom dem och en Power BI-dashboard."},
   myrole:{en:"Everything.",sv:"Allt."},
   figs:[{src:"img/cardeal.png",wide:true,cap:{en:"The app on demo data: what matters to you on the left, the ranked cars and their yearly cost on the right.",sv:"Appen på demodata: det som är viktigast för dig till vänster, rankade bilar och deras årskostnad till höger."}}], links:[]},
@@ -383,16 +399,6 @@ const PROJECTS = [
   resultText:{en:"A working prototype with candidate and company flows, shown here with demo data.",sv:"En fungerande prototyp med flöden för kandidater och företag, här med demodata."},
   myrole:{en:"Product, design and code.",sv:"Produkt, design och kod."},
   figs:[{src:"img/reverse_landing.png",wide:true,cap:{en:"The start page.",sv:"Startsidan."}},{src:"img/reverse_search.png",cap:{en:"Company view: candidates who are looking for work right now.",sv:"Företagsvy: kandidater som söker jobb just nu."}},{src:"img/reverse_offer.png",cap:{en:"Candidate view: a structured offer with salary, hours and location.",sv:"Kandidatvy: ett strukturerat erbjudande med lön, timmar och ort."}}], links:[]},
- {slug:"test-slot-monitor", status:"ship", still:"img/testslot_still.png", anim:"img/testslot_demo.webp", imgTop:true,
-  heroCap:{en:"Recorded in June 2025: the first run, the automatic re-run ten minutes later, the email it sent when an earlier slot appeared, and the confirmation with the new test booked and the old one cancelled. Personal details are blurred or cut.",sv:"Inspelat i juni 2025: första körningen, den automatiska omkörningen tio minuter senare, mejlet den skickade när en tidigare tid dök upp, och bekräftelsen med det nya provet bokat och det gamla avbokat. Personuppgifter är suddade eller bortklippta."},
-  title:{en:"Driving-test slot monitor",sv:"Bevakare för uppkörningstider"},
-  short:{en:"A script that watched Trafikverket's booking site for cancelled motorcycle tests and emailed me when an earlier slot opened. It got me a test weeks earlier.",sv:"Ett skript som bevakade Trafikverkets bokningssida efter avbokade MC-prov och mejlade mig när en tidigare tid dök upp. Jag fick provtid veckor tidigare."},
-  period:"2025", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Python","Selenium"],
-  problem:{en:"Trafikverket doesn't notify you about cancellations. The only way to find one is to keep refreshing the page.",sv:"Trafikverket meddelar inte avbokningar. Enda sättet att hitta en är att ladda om sidan gång på gång."},
-  approach:{en:["After one manual BankID login, Selenium reuses the session and walks through the booking pages.","It checks every ten minutes, at roughly the pace a person would, and sends an email when an earlier date shows up."],sv:["Efter en manuell BankID-inloggning återanvänder Selenium sessionen och går igenom bokningssidorna.","Den kollar var tionde minut, ungefär i den takt en människa skulle, och skickar ett mejl när ett tidigare datum dyker upp."]},
-  resultText:{en:"I booked and passed my motorcycle test weeks before my original date.",sv:"Jag bokade och klarade MC-provet veckor före mitt ursprungliga datum."},
-  myrole:{en:"Everything.",sv:"Allt."}, figs:[],
-  links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/Swedish-Transport-Administration-Driving-Test-Slot-Monitor"}]},
  {slug:"syria-atlas", status:"concept", still:"img/syria_atlas.png",
   heroCap:{en:"Concept sketch. The three themes are where I would start looking; there is no data behind the image yet.",sv:"Konceptskiss. De tre temana är där jag skulle börja leta; det finns ingen data bakom bilden än."},
   title:{en:"Syria investment atlas",sv:"Investeringsatlas för Syrien"},
@@ -432,11 +438,11 @@ const thumb=(p,alt="",cls="")=>p.still?`<img class="${cls}" src="${p.still}" ${p
 
 /* ===== views ===== */
 function home(){
-  const p=PROJECTS[0], others=PROJECTS.slice(1,5);
+  const p=PROJECTS[0], others=PROJECTS.slice(1);
   return `
   <div class="wrap hero">
     <div>
-      <div class="who"><img src="img/profile.jpg" alt="Kais Alhasan"><div><h1>Kais Alhasan</h1><div class="title">${U("title")}</div></div></div>
+      <div class="who"><img src="img/profile-2026.jpg" alt="Kais Alhasan"><div><h1>Kais Alhasan</h1><div class="title">${U("title")}</div></div></div>
       <div class="bio"><p>${U("p1")}</p><p>${U("p2")}</p></div>
     </div>
     <div class="side">
@@ -467,7 +473,7 @@ function home(){
     <div class="tiles">
       <a class="card t-a" href="#/experience"><img src="img/scania-ceo.jpg" alt="Kais with Scania's CEO Christian Levin">
         <div class="body"><div class="kicker">${U("k_exp")}</div><h3>${U("exp_tile")}</h3><p>${U("exp_tile_p")}</p></div></a>
-      <a class="card t-b" href="#/projects/${p.slug}">${thumb(p,"Two cables routed by the trained agent")}
+      <a class="card t-b" href="#/projects/${p.slug}">${thumb(p,L(p.title))}
         <div class="body"><div class="kicker">${U("k_proj")} · ${badge(p.status)}</div><h3>${L(p.title)}</h3><p>${L(p.tilep)}</p><span class="playhint">${U("hover")}</span></div></a>
       <a class="card t-c" href="#/projects"><div class="body"><div class="kicker">${U("k_more")}</div>
         <ul class="mini">${others.map(o=>`<li><span>${L(o.title)}</span>${badge(o.status)}</li>`).join("")}</ul></div></a>
@@ -485,7 +491,7 @@ function projectsPage(){
     <h1 class="page">${U("proj_h")}</h1><p class="lead">${U("proj_p")}</p>
     <div class="filters" role="group" aria-label="Filter">
       <button class="chip" data-f="all" aria-pressed="true">${U("f_all")}</button>
-      ${["active","ship","wip","concept"].map(s=>`<button class="chip" data-f="${s}" aria-pressed="false">${L(UI.st[s])}</button>`).join("")}
+      ${["ship","active","wip","concept"].map(s=>`<button class="chip" data-f="${s}" aria-pressed="false">${L(UI.st[s])}</button>`).join("")}
     </div>
     <div class="plist">${PROJECTS.map(p=>`
       <a class="prow" data-s="${p.status}" href="#/projects/${p.slug}">
@@ -568,7 +574,7 @@ function leadershipPage(){
     <h2>${sv()?"Där det började":"Where it started"}</h2>
     <div class="photos">
       <figure><img src="img/syria_team_medals.jpg" alt="Youth wrestling team with medals in Syria"><figcaption>${sv()?"Mitt första lag, efter en tävling i Syrien.":"My first team, after a competition in Syria."}</figcaption></figure>
-      <figure><img src="img/eldsjal-stage.jpg" alt=""><figcaption>${sv()?"Och många år senare: på scenen efter Eldsjälsgalan.":"And years later: on stage after Eldsjälsgalan."}</figcaption></figure>
+      <figure><img src="img/eldsjal-stage.jpg" alt=""><figcaption>${sv()?"Många år senare, på scenen på Eldsjälsgalan.":"Years later, on stage at Eldsjälsgalan."}</figcaption></figure>
     </div>
   </div></section>`;
 }
@@ -579,11 +585,11 @@ function aboutPage(){
     <div>
       <h1 class="page" style="margin-bottom:20px">${U("about_h")}</h1>
       <p>${sv()?"Jag kom till Sverige från Syrien 2015, när jag var fjorton. Jag gick naturvetenskapsprogrammet på Vasagymnasiet i Arboga och började på maskinteknik i Linköping 2021.":"I came to Sweden from Syria in 2015, when I was fourteen. I did the natural science programme at Vasagymnasiet in Arboga and started mechanical engineering in Linköping in 2021."}</p>
-      <p>${sv()?"Det som fastnat mest under utbildningen är designautomation och att optimera processer i allmänhet: att göra saker så effektiva som möjligt. Ekonomistudierna gör att jag nästan alltid frågar vad en lösning kostar innan jag frågar hur snygg den är.":"What has stuck with me most is design automation, and optimising processes in general: making things as efficient as they can be. The business studies mean I usually ask what a solution costs before I ask how elegant it is."}</p>
+      <p>${sv()?"Det som har fastnat mest under utbildningen är designautomation och att optimera processer i allmänhet: att göra saker så effektiva som möjligt. Ekonomistudierna har lärt mig att tänka på kostnad och nytta redan när något konstrueras.":"What has stuck with me most from my studies is design automation, and optimising processes in general: making things as efficient as they can be. The business degree has taught me to think about cost and value already at the design stage."}</p>
       <p>${sv()?"Jag kan tänka mig att flytta för rätt exjobb eller jobb, inom Sverige eller utomlands.":"I'm happy to relocate for the right thesis or job, in Sweden or abroad."}</p>
     </div>
     <div>
-      <figure><img src="img/syria_brother.jpg" alt="Kais and his younger brother as children in Syria" style="aspect-ratio:4/3;object-fit:cover"><figcaption>${sv()?"Jag och min lillebror på balkongen hemma i Syrien.":"My little brother and me on our balcony in Syria."}</figcaption></figure>
+      <figure><img src="img/syria_brother.jpg" alt="Kais and his little brother as children in Syria" style="aspect-ratio:4/3;object-fit:cover"><figcaption>${sv()?"Med min lillebror på balkongen hemma i Syrien.":"With my little brother on our balcony in Syria."}</figcaption></figure>
     </div>
   </div></section>
   <section><div class="wrap two">
