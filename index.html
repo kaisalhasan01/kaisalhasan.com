@@ -99,7 +99,8 @@ h2{font-size:1.6rem;font-weight:600;margin-bottom:22px}
 h3{font-size:1.2rem;font-weight:600}
 
 /* home hero */
-.hero{display:grid;gap:22px;padding-top:40px;padding-bottom:28px;grid-template-columns:minmax(0,1fr);align-items:start}
+.hero{display:grid;gap:22px;padding-top:clamp(32px,6vw,72px);padding-bottom:clamp(44px,6vw,72px);grid-template-columns:minmax(0,1fr);align-items:start}
+.hero + section{border-top:1px solid var(--line)}
 @media(min-width:900px){.hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px}}
 .who{display:flex;gap:22px;align-items:center}
 .who img{width:clamp(104px,16vw,156px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid var(--bg2);box-shadow:0 0 0 1px var(--line);flex:none}
@@ -134,7 +135,6 @@ a.feature h3{font-size:clamp(1.35rem,2.4vw,1.75rem);margin:10px 0 10px}
 a.feature p{max-width:32em}
 a.feature .more,a.pair .more{display:inline-block;margin-top:14px;font:600 .95rem Barlow;color:var(--red-ink)}
 a.feature:hover h3,a.pair:hover h3{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}
-.playhint{display:block;font-size:.85rem;color:var(--ink2);margin-top:8px}
 ul.morelist{list-style:none;margin-top:36px;border-top:1px solid var(--line)}
 ul.morelist a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
 ul.morelist b{font:600 1.05rem Barlow}
@@ -314,7 +314,6 @@ const UI = {
   g_lang:{en:"Languages",sv:"Språk"}, g_lang_v:{en:"Swedish (fluent), English (fluent), Arabic (native)",sv:"Svenska (flytande), engelska (flytande), arabiska (modersmål)"},
   glance_h:{en:"In short",sv:"I korthet"}, sel_h:{en:"Selected project",sv:"Utvalt projekt"}, read_proj:{en:"Read about the project →",sv:"Läs om projektet →"},
   exp_more:{en:"All experience →",sv:"All erfarenhet →"}, lead_more:{en:"More about the coaching →",sv:"Mer om tränandet →"}, lead_h2:{en:"Outside engineering",sv:"Utanför ingenjörsarbetet"},
-  hover:{en:"Hover over the image to play",sv:"Håll muspekaren över bilden för att spela upp"},
   exp_tile:{en:"Scania and Väderstad",sv:"Scania och Väderstad"},
   exp_tile_p:{en:"Three summers at Scania in engine assembly and procurement processes, then design work in Creo on Väderstad's seed drills.",sv:"Tre somrar på Scania inom motormontering och inköpsprocesser, sedan konstruktion i Creo på Väderstads såmaskiner."},
   lead_tile:{en:"Wrestling coach in Ryd",sv:"Brottningstränare i Ryd"},
@@ -483,7 +482,7 @@ function home(){
   <section><div class="wrap">
     <div class="head"><h2>${U("sel_h")}</h2><a href="#/projects">${U("allproj_arrow")}</a></div>
     <a class="feature" href="#/projects/${p.slug}">${thumb(p,L(p.title))}
-      <div>${badge(p.status)}<h3>${L(p.title)}</h3><p>${L(p.tilep)}</p><span class="playhint">${U("hover")}</span><span class="more">${U("read_proj")}</span></div></a>
+      <div>${badge(p.status)}<h3>${L(p.title)}</h3><p>${L(p.tilep)}</p><span class="more">${U("read_proj")}</span></div></a>
     <ul class="morelist">${others.map(o=>`<li><a href="#/projects/${o.slug}"><b>${L(o.title)}</b><small>${o.period} · ${o.tools.slice(0,3).join(", ")}</small>${badge(o.status)}</a></li>`).join("")}</ul>
   </div></section>
   <section><div class="wrap">
@@ -637,16 +636,17 @@ document.addEventListener("click",e=>{
   else { const t=document.createElement("textarea"); t.value=EMAIL; document.body.appendChild(t); t.select(); try{document.execCommand("copy")}catch(_){} t.remove(); done(); }
 });
 
-/* ===== hover-to-play thumbnails ===== */
-const canHover=matchMedia("(hover: hover)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* ===== thumbnails play their recording while they are in the middle of the screen ===== */
+const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let playObserver;
 function wireThumbs(){
-  if(!canHover) return;
-  document.querySelectorAll("img[data-anim]").forEach(img=>{
-    const host=img.closest("a")||img;
-    new Image().src=img.dataset.anim; // preload so playback starts at once
-    host.addEventListener("mouseenter",()=>{img.src=img.dataset.anim});
-    host.addEventListener("mouseleave",()=>{img.src=img.dataset.still});
-  });
+  if(playObserver) playObserver.disconnect();
+  if(reduceMotion||!("IntersectionObserver" in window)) return;
+  playObserver=new IntersectionObserver(entries=>entries.forEach(e=>{
+    const img=e.target, want=e.isIntersecting?img.dataset.anim:img.dataset.still;
+    if(img.getAttribute("src")!==want) img.src=want;
+  }),{rootMargin:"-35% 0px -35% 0px"});
+  document.querySelectorAll("img[data-anim]").forEach(img=>playObserver.observe(img));
 }
 
 /* ===== router ===== */
@@ -672,7 +672,6 @@ function render(){
     document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));
     document.querySelectorAll(".prow").forEach(c=>c.style.display=(b.dataset.f==="all"||c.dataset.s===b.dataset.f)?"":"none");
   });
-  document.querySelectorAll(".playhint").forEach(e=>e.hidden=!canHover);
   wireThumbs();
 }
 window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0);nav.classList.remove("hide")});
