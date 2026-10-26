@@ -284,11 +284,11 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
       </svg>
     </div>
     <div><span data-ui="tb_drawn"></span>K. Alhasan</div>
-    <div><span data-ui="tb_date"></span>2026-10-19</div>
+    <div><span data-ui="tb_date"></span>2026-10-26</div>
     <div><span data-ui="tb_scale"></span>1:1</div>
     <div><span data-ui="tb_size"></span>A4</div>
     <div class="last"><span data-ui="tb_dwg"></span>KA-2026-001</div>
-    <div class="last"><span data-ui="tb_rev"></span>F</div>
+    <div class="last"><span data-ui="tb_rev"></span>G</div>
     <div class="last"><span data-ui="tb_sheet"></span>1/1</div>
     <div class="last"><span data-ui="tb_status"></span><b class="ok" data-ui="tb_status_v"></b></div>
   </div>
@@ -332,6 +332,35 @@ const UI = {
   tb_drawn:{en:"Drawn by",sv:"Ritad av"}, tb_date:{en:"Date",sv:"Datum"}, tb_scale:{en:"Scale",sv:"Skala"}, tb_size:{en:"Size",sv:"Format"},
   tb_dwg:{en:"Drawing no.",sv:"Ritningsnr"}, tb_rev:{en:"Rev",sv:"Rev"}, tb_sheet:{en:"Sheet",sv:"Blad"}, tb_status:{en:"Status",sv:"Status"}, tb_status_v:{en:"Available 2027",sv:"Tillgänglig 2027"},
 };
+
+const TOOLS = [
+ {k:"CAD", v:"CATIA V5, Creo Parametric, SolidWorks, Ansys Discovery"},
+ {k:{en:"Code",sv:"Kod"}, v:"Python, C#, VB.NET, C++, MATLAB"},
+ {k:"ML", v:"Unity ML-Agents, ONNX"},
+ {k:"Data", v:"SQL, Power BI, Excel"},
+];
+const toolRows=()=>TOOLS.map(t=>`<div><dt>${L(t.k)}</dt><dd>${t.v}</dd></div>`).join("");
+
+/* alt text for every picture that carries information */
+const ALT = {
+ "img/factory_demo.webp":{en:"Screen recording of the factory layout planner: the hall is shaped, equipment placed, the conveyor routed and the layout shown in 3D",sv:"Skärminspelning av fabrikslayoutplaneraren: hallen formas, utrustning placeras, bandet dras och layouten visas i 3D"},
+ "img/factory_drawn.png":{en:"Conveyor being drawn by hand in the planner, with a warning on the turn under the drill and a list of missing steps",sv:"Transportbandet ritas för hand i planeraren, med en varning för svängen under borren och en lista över vad som saknas"},
+ "img/factory_blueprint.png":{en:"Finished 2D blueprint of a production line, with yellow hatching for the space each machine needs",sv:"Färdig 2D-ritning av en produktionslina, med gul skraffering för utrymmet varje maskin behöver"},
+ "img/factory_morph.webp":{en:"Animation of the 2D blueprint turning into a 3D production line",sv:"Animering där 2D-ritningen blir en produktionslina i 3D"},
+ "img/factory.png":{en:"3D view of the production line with robot arms and products on the conveyor",sv:"3D-vy av produktionslinan med robotarmar och produkter på bandet"},
+ "img/cable_two.webp":{en:"Recording of two cables routed through a 3D layout by the trained agent, with the shortest grid route as a faint gray line",sv:"Inspelning av två kablar som den tränade agenten drar genom en 3D-layout, med den kortaste rutnätsvägen som en svag grå linje"},
+ "img/cable_continuous.webp":{en:"Recording of the continuous agent steering a cable smoothly around obstacles",sv:"Inspelning av den kontinuerliga agenten som styr en kabel mjukt runt hinder"},
+ "img/engine_bay_continuous_v4.png":{en:"Cable routed through a voxelized engine bay, with the demo's counters for cable length and grid route length",sv:"Kabel dragen genom ett voxeliserat motorrum, med demots räknare för kabellängd och rutnätsväg"},
+ "img/results_engine_bay.png":{en:"Bar chart of solved long routes in the engine bay for every agent version, the final agent highest",sv:"Stapeldiagram över lösta långa rutter i motorrummet för varje agentversion, där den färdiga agenten ligger högst"},
+ "img/testslot_demo.webp":{en:"Recording of the slot monitor running, the email it sent and the booking confirmation, with personal details blurred",sv:"Inspelning av bevakningsskriptet, mejlet det skickade och bokningsbekräftelsen, med personuppgifter suddade"},
+ "img/cardeal.png":{en:"The used-car advisor app: buyer priorities on the left, ranked cars with yearly cost on the right",sv:"Bilrådgivarappen: köparens prioriteringar till vänster, rankade bilar med årskostnad till höger"},
+ "img/reverse_landing.png":{en:"Start page of the Reverse job platform",sv:"Startsidan för jobbplattformen Reverse"},
+ "img/reverse_search.png":{en:"Company view in Reverse listing candidates who are looking for work",sv:"Företagsvyn i Reverse med kandidater som söker jobb"},
+ "img/reverse_offer.png":{en:"Candidate view in Reverse showing a structured offer with salary, hours and location",sv:"Kandidatvyn i Reverse med ett strukturerat erbjudande med lön, timmar och ort"},
+ "img/syria_atlas.png":{en:"Concept sketch of a map of Syria with three themes marked",sv:"Konceptskiss av en Syrienkarta med tre teman markerade"},
+ "img/scania-ceo.jpg":{en:"Kais with Scania's CEO Christian Levin",sv:"Kais med Scanias vd Christian Levin"},
+};
+const alt=src=>ALT[src]?L(ALT[src]).replace(/"/g,"&quot;"):"";
 
 /* still = thumbnail, anim = recording that plays on hover (and always on the project page) */
 const PROJECTS = [
@@ -385,13 +414,28 @@ const PROJECTS = [
         {src:"img/engine_bay_continuous_v4.png",cap:{en:"In the voxelized engine bay, with the demo's own counters: 24.5 cells of cable against a 32-cell grid route.",sv:"I det voxeliserade motorrummet, med demots egna räknare: 24,5 celler kabel mot en rutnätsväg på 32 celler."}},
         {src:"img/results_engine_bay.png",wide:true,cap:{en:"Solved long routes for every version I trained. Green is the final agent.",sv:"Lösta långa rutter för varje version jag har tränat. Grönt är den färdiga agenten."}}],
   links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/cable-routing-rl"}]},
+ {slug:"speed-bump", status:"ship", hidden:true, /* hidden until "My part" is written by Kais */
+  title:{en:"Kinematics and strength of a dynamic speed bump",sv:"Kinematik och hållfasthet hos ett dynamiskt farthinder"},
+  short:{en:"Bachelor's thesis: how the flap and cylinder of Actibump, a speed bump that drops for drivers within the limit, move together, what its worst load case is and whether it survives it.",sv:"Kandidatarbete: hur luckan och cylindern i Actibump, ett farthinder som fälls ner för den som håller hastigheten, rör sig tillsammans, vilket lastfall som är värst och om farthindret klarar det."},
+  tilep:{en:"Rigid-body kinematics and a worst-case strength check in MATLAB. No plastic deformation, no buckling.",sv:"Stelkroppskinematik och en hållfasthetskontroll för värsta lastfall i MATLAB. Ingen plastisk deformation, ingen knäckning."},
+  period:"2024", ctx:{en:"Bachelor's thesis, 18 credits (TMMT31), Linköping University. An independent study of Edeva's Actibump; Edeva did not take part and declined to share drawings.",sv:"Kandidatarbete, 18 hp (TMMT31), Linköpings universitet. En fristående studie av Edevas Actibump; Edeva deltog inte och ville inte lämna ut ritningar."},
+  role:{en:"One of three authors",sv:"En av tre författare"}, tools:["MATLAB (ode45)","Rigid-body kinematics","Strength of materials"],
+  problem:{en:"Actibump stays level for drivers within the speed limit and drops its flap for those who are too fast. If the flap has not dropped when a wheel arrives, the wheel hits it. We wanted to know how the flap and the cylinder that lowers it move together, which load case is the worst, and whether the parts survive it.",
+           sv:"Actibump ligger plant för den som håller hastigheten och fäller ner luckan för den som kör för fort. Har luckan inte hunnit fällas ner när hjulet kommer, slår hjulet i den. Vi ville veta hur luckan och cylindern som fäller den rör sig tillsammans, vilket lastfall som är värst och om delarna klarar det."},
+  approach:{en:["Built a 2D geometric model of the flap, cylinder, support legs and chain. Since Edeva declined to share drawings, the dimensions come from measurements of a real installation in Linköping.","Derived how the flap angle, the contact point and the drop depend on the cylinder angle, and solved the expressions in MATLAB.","Modeled a 4,000 kg vehicle as a rigid body, solved its motion over the flap with ode45 and estimated the impact with the impulse laws, using a factor of 2 on the impact force to stay conservative.","Checked the worst case by hand: Euler buckling for the support legs, beam elementary cases for the flap, and the force in the chain that drives the cylinders."],
+            sv:["Byggde en geometrisk 2D-modell av luckan, cylindern, stödbenen och kedjan. Eftersom Edeva inte ville lämna ut ritningar kommer måtten från mätningar på ett riktigt farthinder i Linköping.","Härledde hur luckans vinkel, kontaktpunkten och nedfällningen beror på cylinderns vinkel, och löste uttrycken i MATLAB.","Modellerade ett fordon på 4 000 kg som en stel kropp, löste dess rörelse över luckan med ode45 och uppskattade stöten med impulslagarna, med en faktor 2 på stötkraften för att hålla resultatet konservativt.","Kontrollerade värsta lastfallet för hand: Eulers knäckfall för stödbenen, elementarfall för luckan och kraften i kedjan som driver cylindrarna."]},
+  resultText:{en:"The worst case is when the flap has not dropped before the wheel arrives. The normal force on the flap then reaches about 50 kN, including the safety factor of 2, at a flap angle of 15° and a cylinder angle of 196°. The support legs and the chain carry it with no plastic deformation and no buckling, and every part has a good margin to fracture. The flap angle follows a sinusoidal curve in the cylinder angle, and a larger eccentricity gives a deeper drop.",
+              sv:"Värsta fallet är när luckan inte hunnit fällas ner innan hjulet kommer. Normalkraften på luckan blir då cirka 50 kN, inklusive säkerhetsfaktorn 2, vid luckvinkeln 15° och cylindervinkeln 196°. Stödbenen och kedjan klarar det utan plastisk deformation och utan knäckning, och alla delar har god marginal mot brott. Luckans vinkel följer en sinuskurva i cylinderns vinkel, och större excentricitet ger djupare nedfällning."},
+  myrole:{en:"TODO",sv:"TODO"},
+  next:{en:"Model the flap as a thin plate in 3D or with FEM instead of a beam, use a more realistic impact model, and study wear from wheel tracks over many load cycles. Physical tests would be needed to validate the models.",sv:"Modellera luckan som en tunn platta i 3D eller med FEM i stället för som en balk, använda en mer realistisk stötmodell och studera nötning från hjulspår över många lastcykler. Fysiska prov behövs för att validera modellerna."},
+  figs:[], links:[]},
  {slug:"test-slot-monitor", status:"ship", still:"img/testslot_still.png", anim:"img/testslot_demo.webp", imgTop:true,
   heroCap:{en:"Recorded in June 2025: the first run, the automatic re-run ten minutes later, the email it sent when an earlier slot appeared, and the confirmation with the new test booked and the old one canceled. Personal details are blurred or cut.",sv:"Inspelat i juni 2025: första körningen, den automatiska omkörningen tio minuter senare, mejlet den skickade när en tidigare tid dök upp, och bekräftelsen med det nya provet bokat och det gamla avbokat. Personuppgifter är suddade eller bortklippta."},
   title:{en:"Driving-test slot monitor",sv:"Bevakning av lediga uppkörningstider"},
   short:{en:"A script that watched Trafikverket's booking site for canceled motorcycle tests and emailed me when an earlier slot opened. It got me a test date weeks earlier.",sv:"Ett skript som bevakade Trafikverkets bokningssida efter avbokade MC-prov och mejlade mig när en tidigare tid dök upp. Jag fick en provtid flera veckor tidigare."},
   period:"2025", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Sole developer",sv:"Ensam utvecklare"}, tools:["Python","Selenium"],
   problem:{en:"Trafikverket doesn't notify you about cancellations. The only way to find one is to keep refreshing the page.",sv:"Trafikverket meddelar inte avbokningar. Enda sättet att hitta en är att ladda om sidan gång på gång."},
-  approach:{en:["After one manual BankID login, Selenium reuses the session and walks through the booking pages.","It checks every ten minutes, at roughly the pace a person would, and sends an email when an earlier date shows up."],sv:["Efter en manuell BankID-inloggning återanvänder Selenium sessionen och går igenom bokningssidorna.","Den kollar var tionde minut, ungefär i den takt en människa skulle, och skickar ett mejl när ett tidigare datum dyker upp."]},
+  approach:{en:["After I logged in myself, the script walked through the booking pages the way a person would.","It checks every ten minutes, at roughly the pace a person would, and sends an email when an earlier date shows up."],sv:["Efter att jag loggat in själv gick skriptet igenom bokningssidorna på samma sätt som en människa.","Den kollar var tionde minut, ungefär i den takt en människa skulle, och skickar ett mejl när ett tidigare datum dyker upp."]},
   resultText:{en:"I booked and passed my motorcycle test weeks before my original date.",sv:"Jag bokade och klarade MC-provet veckor före mitt ursprungliga datum."},
   myrole:{en:"Everything.",sv:"Allt."}, figs:[],
   links:[{t:"GitHub",href:"https://github.com/kaisalhasan01/Swedish-Transport-Administration-Driving-Test-Slot-Monitor"}]},
@@ -414,7 +458,7 @@ const PROJECTS = [
   resultText:{en:"A working prototype with candidate and company flows, shown here with demo data.",sv:"En fungerande prototyp med flöden för kandidater och företag, här med demodata."},
   myrole:{en:"Product, design and code.",sv:"Produkt, design och kod."},
   figs:[{src:"img/reverse_landing.png",wide:true,cap:{en:"The start page.",sv:"Startsidan."}},{src:"img/reverse_search.png",cap:{en:"Company view: candidates who are looking for work right now.",sv:"Företagsvy: kandidater som söker jobb just nu."}},{src:"img/reverse_offer.png",cap:{en:"Candidate view: a structured offer with salary, hours and location.",sv:"Kandidatvy: ett strukturerat erbjudande med lön, timmar och ort."}}], links:[]},
- {slug:"syria-atlas", status:"concept", still:"img/syria_atlas.png",
+ {slug:"syria-atlas", status:"concept", hidden:true, still:"img/syria_atlas.png",
   heroCap:{en:"Concept sketch. The three themes are where I would start looking; there is no data behind the image yet.",sv:"Konceptskiss. De tre temana är där jag skulle börja leta; det finns ingen data bakom bilden än."},
   title:{en:"Syria investment atlas",sv:"Investeringsatlas för Syrien"},
   short:{en:"An idea for a data atlas of where reconstruction and investment in Syria would have the most effect, built in Power BI.",sv:"En idé om en dataatlas över var återuppbyggnad och investeringar i Syrien skulle göra mest nytta, byggd i Power BI."},
@@ -451,9 +495,11 @@ const back=(...extra)=>`<div class="wrap back"><a href="#/">${U("backhome")}</a>
 /* thumbnail that plays its recording while hovered */
 const thumb=(p,alt="",cls="")=>p.still?`<img class="${cls}" src="${p.still}" ${p.anim?`data-still="${p.still}" data-anim="${p.anim}"`:""} alt="${alt}" ${p.imgTop?'style="object-position:top left"':''}>`:`<div class="noimg"></div>`;
 
+const SHOWN=()=>PROJECTS.filter(p=>!p.hidden);
+
 /* ===== views ===== */
 function home(){
-  const p=PROJECTS[0], others=PROJECTS.slice(1);
+  const p=SHOWN()[0], others=SHOWN().slice(1);
   return `
   <div class="wrap hero">
     <div>
@@ -472,10 +518,10 @@ function home(){
     <aside class="spec"><h2>${U("glance_h")}</h2><dl>
       <div><dt>${U("g_study")}</dt><dd>${U("g_study_v")}</dd></div>
       <div><dt>${U("g_ind")}</dt><dd>${U("g_ind_v")}</dd></div>
-      <div><dt>CAD</dt><dd>CATIA V5, Creo, SolidWorks</dd></div>
-      <div><dt>${sv()?"Kod":"Code"}</dt><dd>Python, C#, VB.NET, MATLAB</dd></div>
-      <div><dt>ML</dt><dd>Unity ML-Agents, ONNX</dd></div>
-      <div><dt>Data</dt><dd>SQL, Power BI, Excel</dd></div>
+      ${toolRows()}
+      
+      
+      
       <div><dt>${U("g_lang")}</dt><dd>${U("g_lang_v")}</dd></div>
     </dl></aside>
   </div>
@@ -503,9 +549,9 @@ function projectsPage(){
     <h1 class="page">${U("proj_h")}</h1><p class="lead">${U("proj_p")}</p>
     <div class="filters" role="group" aria-label="Filter">
       <button class="chip" data-f="all" aria-pressed="true">${U("f_all")}</button>
-      ${["ship","active","wip","concept"].map(s=>`<button class="chip" data-f="${s}" aria-pressed="false">${L(UI.st[s])}</button>`).join("")}
+      ${["ship","active","wip","concept"].filter(s=>SHOWN().some(p=>p.status===s)).map(s=>`<button class="chip" data-f="${s}" aria-pressed="false">${L(UI.st[s])}</button>`).join("")}
     </div>
-    <div class="plist">${PROJECTS.map(p=>`
+    <div class="plist">${SHOWN().map(p=>`
       <a class="prow" data-s="${p.status}" href="#/projects/${p.slug}">
         ${thumb(p)}
         <div><h3>${L(p.title)}</h3><p>${L(p.short)}</p><div class="meta">${p.period} · ${p.tools.join(", ")}</div></div>
@@ -515,11 +561,11 @@ function projectsPage(){
 }
 
 function projectPage(slug){
-  const i=PROJECTS.findIndex(x=>x.slug===slug); if(i<0) return projectsPage();
-  const p=PROJECTS[i], prev=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length], next=PROJECTS[(i+1)%PROJECTS.length];
+  const list0=SHOWN(), i=list0.findIndex(x=>x.slug===slug); if(i<0) return projectsPage();
+  const p=list0[i], prev=list0[(i-1+list0.length)%list0.length], next=list0[(i+1)%list0.length];
   const list=a=>a.length?`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
   const hero=p.anim||(!p.noHero&&p.still);
-  const media=(src,still)=>still?`<img src="${still}" data-still="${still}" data-anim="${src}" alt="">`:`<img src="${src}" alt="">`;
+  const media=(src,still)=>still?`<img src="${still}" data-still="${still}" data-anim="${src}" alt="${alt(src)}">`:`<img src="${src}" alt="${alt(src)}">`;
   return `${back([U("allproj"),"#/projects"])}
   <section style="padding-top:8px"><div class="wrap">
     ${badge(p.status)}
@@ -545,7 +591,7 @@ function projectPage(slug){
     ${p.next?`<div><h3>${U("s_next")}</h3><p>${L(p.next)}</p></div>`:""}
     ${p.links.length?`<div><h3>${U("s_links")}</h3><div class="btns">${p.links.map(l=>`<a class="btn" href="${l.href}" target="_blank" rel="noopener">${L(l.t)}</a>`).join("")}</div></div>`:""}
   </div></section>
-  ${p.figs.length?`<section><div class="wrap figs">${p.figs.map(f=>`<figure class="${f.wide?"wide":""}">${f.still?media(f.src,f.still):`<img src="${f.src}" alt="" loading="lazy">`}<figcaption>${L(f.cap)}</figcaption></figure>`).join("")}</div></section>`:""}
+  ${p.figs.length?`<section><div class="wrap figs">${p.figs.map(f=>`<figure class="${f.wide?"wide":""}">${f.still?media(f.src,f.still):`<img src="${f.src}" alt="${alt(f.src)}" loading="lazy">`}<figcaption>${L(f.cap)}</figcaption></figure>`).join("")}</div></section>`:""}
   <div class="wrap"><div class="pager">
     <a href="#/projects/${prev.slug}"><small>${U("prev")}</small>${L(prev.title)}</a>
     <a href="#/projects/${next.slug}" style="text-align:right"><small>${U("next")}</small>${L(next.title)}</a>
@@ -558,7 +604,7 @@ function experiencePage(){
     <h1 class="page" style="margin-bottom:28px">${U("exp_h")}</h1>
     ${JOBS.map(j=>`<div class="job"><div class="when">${L(j.when)}</div>
       <div><h3>${L(j.title)}</h3><div class="org">${L(j.sub)}</div><ul>${L(j.pts).map(x=>`<li>${x}</li>`).join("")}</ul>
-      ${j.photo?`<figure><img src="${j.photo.src}" alt=""><figcaption>${L(j.photo.cap)}</figcaption></figure>`:""}</div></div>`).join("")}
+      ${j.photo?`<figure><img src="${j.photo.src}" alt="${alt(j.photo.src)}"><figcaption>${L(j.photo.cap)}</figcaption></figure>`:""}</div></div>`).join("")}
   </div></section>
   <section><div class="wrap"><h2>${U("other")}</h2>
     <div class="other">${OTHER.map(o=>`<div><span>${L(o.t)}</span><span class="muted">${o.w}</span></div>`).join("")}</div>
@@ -587,7 +633,7 @@ function leadershipPage(){
     <h2>${sv()?"Där det började":"Where it started"}</h2>
     <div class="photos">
       <figure><img src="img/syria_team_medals.jpg" alt="Youth wrestling team with medals in Syria"><figcaption>${sv()?"Mitt första lag, efter en tävling i Syrien.":"My first team, after a competition in Syria."}</figcaption></figure>
-      <figure><img src="img/eldsjal-stage.jpg" alt=""><figcaption>${sv()?"Många år senare, på scenen på Eldsjälsgalan.":"Years later, on stage at Eldsjälsgalan."}</figcaption></figure>
+      <figure><img src="img/eldsjal-stage.jpg" alt="${sv()?"Kais på scenen på Eldsjälsgalan 2026":"Kais on stage at Eldsjälsgalan 2026"}"><figcaption>${sv()?"Många år senare, på scenen på Eldsjälsgalan.":"Years later, on stage at Eldsjälsgalan."}</figcaption></figure>
     </div>
   </div></section>`;
 }
@@ -612,10 +658,10 @@ function aboutPage(){
     </div></div>
     <div><h2>${U("skills_h")}</h2>
       <dl class="stack">
-        <div><dt>CAD</dt><dd>CATIA V5, Creo Parametric, SolidWorks, Ansys Discovery</dd></div>
-        <div><dt>${sv()?"Kod":"Code"}</dt><dd>Python, C#, VB.NET, C++, MATLAB</dd></div>
-        <div><dt>ML</dt><dd>Unity ML-Agents, ONNX</dd></div>
-        <div><dt>Data</dt><dd>SQL, Power BI, Excel</dd></div>
+        ${toolRows()}
+        
+        
+        
         <div><dt>${sv()?"Språk":"Languages"}</dt><dd>${U("g_lang_v")}</dd></div>
       </dl>
     </div>
