@@ -269,7 +269,7 @@ footer{margin-top:48px;background:var(--band);color:var(--band-ink);border-top:3
     <div class="rows">
       <a class="btn primary js-email" href="mailto:kais.alhasan01@gmail.com">kais.alhasan01@gmail.com</a>
       <div class="btns">
-        <a class="btn" href="cv-kais-alhasan.pdf" target="_blank" rel="noopener" data-ui="cv_btn"></a>
+        <a class="btn" id="cvfoot" href="cv-kais-alhasan.pdf" target="_blank" rel="noopener" data-ui="cv_btn"></a>
         <a class="btn" href="https://www.linkedin.com/in/kais-alhasan/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/kaisalhasan01" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -320,7 +320,7 @@ const UI = {
   lead_tile_p:{en:"I've wrestled since I was twelve, first in Syria and then in Sweden. Now I coach children every week, and my school program in Ryd has reached 141 children so far.",sv:"Jag har brottats sedan jag var tolv, först i Syrien och sedan i Sverige. Nu tränar jag barn varje vecka, och mitt skolprogram i Ryd har nått 141 barn hittills."},
   proj_h:{en:"Projects",sv:"Projekt"}, proj_p:{en:"Each project is labeled with how far it has actually got.",sv:"Varje projekt är märkt med hur långt det faktiskt har kommit."},
   f_all:{en:"All",sv:"Alla"},
-  st:{active:{en:"Active",sv:"Aktivt"},wip:{en:"In progress",sv:"Pågår"},ship:{en:"Done",sv:"Klart"},concept:{en:"Idea",sv:"Idé"}},
+  st:{active:{en:"Ongoing",sv:"Pågår"},wip:{en:"Ongoing",sv:"Pågår"},ship:{en:"Done",sv:"Klart"},concept:{en:"Idea",sv:"Idé"}},
   m_year:{en:"When",sv:"När"}, m_ctx:{en:"Context",sv:"Sammanhang"}, m_role:{en:"Role",sv:"Roll"}, m_tools:{en:"Tools",sv:"Verktyg"},
   s_problem:{en:"The problem",sv:"Problemet"}, s_approach:{en:"What I did",sv:"Vad jag gjorde"}, s_result:{en:"Results",sv:"Resultat"}, s_role:{en:"My part",sv:"Min del"}, s_next:{en:"Next",sv:"Nästa steg"}, s_links:{en:"Links",sv:"Länkar"},
   prev:{en:"Previous project",sv:"Föregående projekt"}, next:{en:"Next project",sv:"Nästa projekt"},
@@ -449,7 +449,7 @@ const PROJECTS = [
   resultText:{en:"Working on demo data. Next: real listings over a few weeks, the SQL analysis behind them, and a Power BI dashboard.",sv:"Fungerar på demodata. Nästa steg: riktiga annonser under några veckor, SQL-analysen bakom dem och en Power BI-dashboard."},
   myrole:{en:"Everything.",sv:"Allt."},
   figs:[{src:"img/cardeal.png",wide:true,cap:{en:"The app on demo data: what matters to you on the left, the ranked cars and their yearly cost on the right.",sv:"Appen på demodata: det som är viktigast för dig till vänster, rankade bilar och deras årskostnad till höger."}}], links:[]},
- {slug:"reverse", status:"wip", still:"img/reverse_landing.png", imgTop:true, noHero:true,
+ {slug:"reverse", status:"active", still:"img/reverse_landing.png", imgTop:true, noHero:true,
   title:{en:"Reverse, a job platform where companies apply",sv:"Reverse, en jobbplattform där företagen söker"},
   short:{en:"Candidates build a free profile and companies pay to contact them, with salary, hours and location stated up front.",sv:"Kandidater gör en gratis profil och företag betalar för att kontakta dem, med lön, timmar och ort angivet direkt."},
   period:"2026", ctx:{en:"Own project",sv:"Eget projekt"}, role:{en:"Product and development",sv:"Produkt och utveckling"}, tools:["Next.js","TypeScript","PostgreSQL"],
@@ -496,6 +496,7 @@ const back=(...extra)=>`<div class="wrap back"><a href="#/">${U("backhome")}</a>
 const thumb=(p,alt="",cls="")=>p.still?`<img class="${cls}" src="${p.still}" ${p.anim?`data-still="${p.still}" data-anim="${p.anim}"`:""} alt="${alt}" ${p.imgTop?'style="object-position:top left"':''}>`:`<div class="noimg"></div>`;
 
 const SHOWN=()=>PROJECTS.filter(p=>!p.hidden);
+const cvHref=()=>sv()?"cv-kais-alhasan-sv.pdf":"cv-kais-alhasan.pdf";
 
 /* ===== views ===== */
 function home(){
@@ -509,7 +510,7 @@ function home(){
         <p class="avail">${U("avail")}</p>
         <div class="btns">
           <a class="btn primary js-email" href="mailto:${EMAIL}">${U("email")}</a>
-          <a class="btn" href="cv-kais-alhasan.pdf" target="_blank" rel="noopener">${U("cv_btn")}</a>
+          <a class="btn" href="${cvHref()}" target="_blank" rel="noopener">${U("cv_btn")}</a>
           <a class="btn" href="https://www.linkedin.com/in/kais-alhasan/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="https://github.com/kaisalhasan01" target="_blank" rel="noopener">GitHub</a>
         </div>
@@ -547,10 +548,7 @@ function projectsPage(){
   return `${back()}
   <section style="padding-top:8px"><div class="wrap">
     <h1 class="page">${U("proj_h")}</h1><p class="lead">${U("proj_p")}</p>
-    <div class="filters" role="group" aria-label="Filter">
-      <button class="chip" data-f="all" aria-pressed="true">${U("f_all")}</button>
-      ${["ship","active","wip","concept"].filter(s=>SHOWN().some(p=>p.status===s)).map(s=>`<button class="chip" data-f="${s}" aria-pressed="false">${L(UI.st[s])}</button>`).join("")}
-    </div>
+    <div style="height:24px"></div>
     <div class="plist">${SHOWN().map(p=>`
       <a class="prow" data-s="${p.status}" href="#/projects/${p.slug}">
         ${thumb(p)}
@@ -727,11 +725,8 @@ function render(){
   document.documentElement.lang=lang;
   document.getElementById("lang-en").setAttribute("aria-pressed",lang==="en");
   document.getElementById("lang-sv").setAttribute("aria-pressed",lang==="sv");
+  document.getElementById("cvfoot").href=cvHref();
   document.title = h==="#/"||h==="" ? "Kais Alhasan" : (document.querySelector("h1")?.textContent||"")+" · Kais Alhasan";
-  document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{
-    document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));
-    document.querySelectorAll(".prow").forEach(c=>c.style.display=(b.dataset.f==="all"||c.dataset.s===b.dataset.f)?"":"none");
-  });
   wireThumbs();
 }
 window.addEventListener("hashchange",()=>{render();window.scrollTo(0,0);nav.classList.remove("hide")});
